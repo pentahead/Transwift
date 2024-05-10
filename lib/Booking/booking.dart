@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:transwift/Booking/assets/dropdown.dart';
 import 'package:transwift/Booking/assets/input.dart';
 import 'package:transwift/Booking/assets/date_pick.dart';
+import 'package:transwift/Booking/assets/Button.dart';
+import 'package:transwift/assets/NavBar.dart';
 
 class Booking extends StatelessWidget {
   const Booking({super.key});
@@ -32,109 +34,117 @@ class Booking extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 55,
-                      ),
-                      Center(
-                        child: Text(
-                          "Booking",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "poppins",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 36,
-                            letterSpacing: 2,
-                          ),
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 55,
+                    ),
+                    Center(
+                      child: Text(
+                        "Booking",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "poppins",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 36,
+                          letterSpacing: 2,
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        "Pilih kendaraan",
+                        style: poppins16bold(),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          "Pilih kendaraan",
-                          style: TextStyle(
-                            fontFamily: "poppins",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            letterSpacing: 1,
-                          ),
-                        ),
+                    ),
+                    Dropdown(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 25),
+                      child: Text(
+                        "Dari",
+                        style: poppins_14(),
                       ),
-                      Dropdown(),
-                      SizedBox(
-                        height: 20,
+                    ),
+                    input(),
+                    Padding(
+                      padding: EdgeInsets.only(left: 25),
+                      child: Text(
+                        "Tujuan",
+                        style: poppins_14(),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 25),
-                        child: Text(
-                          "Dari",
-                          style: TextStyle(
-                            fontFamily: "poppins",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            letterSpacing: 1,
-                          ),
-                        ),
+                    ),
+                    input(),
+                    Padding(
+                      padding: EdgeInsets.only(left: 25, bottom: 10),
+                      child: Text(
+                        "Tanggal",
+                        style: poppins_16_semi(),
                       ),
-                      input(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 25),
-                        child: Text(
-                          "KE",
-                          style: TextStyle(
-                            fontFamily: "poppins",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            letterSpacing: 1,
-                          ),
-                        ),
+                    ),
+                    DatePicker(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 25),
+                      child: Text(
+                        "Jumlah Penumpang",
+                        style: poppins_14(),
                       ),
-                      input(),
-                      Padding(
-                        padding: EdgeInsets.only(left: 25, bottom: 10),
-                        child: Text(
-                          "Tanggal",
-                          style: TextStyle(
-                            fontFamily: "poppins",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                      ),
-                      DatePicker(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 25),
-                        child: Text(
-                          "KE",
-                          style: TextStyle(
-                            fontFamily: "poppins",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                      ),
-                      input(),
-                    ],
-                  ),
-                ))
+                    ),
+                    input(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    button_done()
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(),
+    );
+  }
+
+  TextStyle poppins_16_semi() {
+    return TextStyle(
+      fontFamily: "poppins",
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      letterSpacing: 1,
+    );
+  }
+
+  TextStyle poppins16bold() {
+    return TextStyle(
+      fontFamily: "poppins",
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      letterSpacing: 1,
+    );
+  }
+
+  TextStyle poppins_14() {
+    return TextStyle(
+      fontFamily: "poppins",
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      letterSpacing: 1,
     );
   }
 }

@@ -51,6 +51,11 @@ class _DatePickerState extends State<DatePicker> {
                 ElevatedButton(
                   onPressed: () => _selectDate(context),
                   child: Text('Select date'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(253, 253, 253, 1),
+                    surfaceTintColor: Colors.white,
+                    textStyle: TextStyle(fontSize: 16),
+                  ),
                 ),
               ],
             ),

@@ -13,13 +13,6 @@ class MyTrip extends StatefulWidget {
 class _MyTripState extends State<MyTrip> {
   String _searchText = '';
   int _value = 0;
-  int _selectedIndex = 0; // State untuk mengetahui halaman yang aktif
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +113,7 @@ class _MyTripState extends State<MyTrip> {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(_selectedIndex, _onItemTapped),
+      bottomNavigationBar: NavBar(),
     );
   }
 

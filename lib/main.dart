@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // Menghilangkan teks "debug"
       title: 'Instagram',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
