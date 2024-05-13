@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/trip/MyTrip.dart';
 import 'package:transwift/Booking/booking.dart';
+import 'package:transwift/Profile/profile.dart';
 
 class InstagramBody extends StatelessWidget {
   @override
@@ -17,9 +18,15 @@ class InstagramBody extends StatelessWidget {
                 'Selamat Datang, User!',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              CircleAvatar(
-                radius: 20,
-                backgroundImage: AssetImage('assets/user_profile.jpg'),
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Profile()),
+                ),
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage('assets/images/profile.jpg'),
+                ),
               ),
             ],
           ),
