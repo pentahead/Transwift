@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:transwift/Profile/account.dart';
-import 'package:transwift/Profile/callcenter.dart';
+import 'package:transwift/Profile/profile.dart';
 import 'package:transwift/Profile/Assets/Widget.dart';
 
 class account extends StatelessWidget {
@@ -43,7 +42,7 @@ class account extends StatelessWidget {
                       padding: const EdgeInsets.all(20),
                       child: Text(
                         "My Account",
-                        style: poppins_30_semi(),
+                        style: poppins_30_semi_white(),
                       ),
                     ),
                     Center(
@@ -66,15 +65,7 @@ class account extends StatelessWidget {
                       child: Container(
                         height: 50,
                         width: 400,
-                        decoration: BoxDecoration(
-                          color: Colors.white, // Set background color to white
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Set rounded corners
-                          border: Border.all(
-                            color: Colors.blue, // Set border color to blue
-                            width: 2.0, // Set border width
-                          ),
-                        ),
+                        decoration: blue_border_white_bg(),
                         child: Row(
                           children: [
                             SizedBox(
@@ -90,12 +81,7 @@ class account extends StatelessWidget {
                             ),
                             Text(
                               'Bashori',
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12,
-                                  letterSpacing: 1,
-                                  color: Colors.grey),
+                              style: poppins_12_w700_grey(),
                             ),
                           ],
                         ), // Add your content inside the container
@@ -115,15 +101,7 @@ class account extends StatelessWidget {
                       child: Container(
                         height: 50,
                         width: 400,
-                        decoration: BoxDecoration(
-                          color: Colors.white, // Set background color to white
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Set rounded corners
-                          border: Border.all(
-                            color: Colors.blue, // Set border color to blue
-                            width: 2.0, // Set border width
-                          ),
-                        ),
+                        decoration: blue_border_white_bg(),
                         child: Row(
                           children: [
                             SizedBox(
@@ -139,12 +117,7 @@ class account extends StatelessWidget {
                             ),
                             Text(
                               'WongIrengJembuten@gmail,com',
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12,
-                                  letterSpacing: 1,
-                                  color: Colors.grey),
+                              style: poppins_12_w700_grey(),
                             ),
                           ],
                         ), // Add your content inside the container
@@ -164,15 +137,7 @@ class account extends StatelessWidget {
                       child: Container(
                         height: 50,
                         width: 400,
-                        decoration: BoxDecoration(
-                          color: Colors.white, // Set background color to white
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Set rounded corners
-                          border: Border.all(
-                            color: Colors.blue, // Set border color to blue
-                            width: 2.0, // Set border width
-                          ),
-                        ),
+                        decoration: blue_border_white_bg(),
                         child: Row(
                           children: [
                             SizedBox(
@@ -188,12 +153,7 @@ class account extends StatelessWidget {
                             ),
                             Text(
                               '081393418944',
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12,
-                                  letterSpacing: 1,
-                                  color: Colors.grey),
+                              style: poppins_12_w700_grey(),
                             ),
                           ],
                         ), // Add your content inside the container
@@ -213,22 +173,14 @@ class account extends StatelessWidget {
                       child: Container(
                         height: 50,
                         width: 400,
-                        decoration: BoxDecoration(
-                          color: Colors.white, // Set background color to white
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Set rounded corners
-                          border: Border.all(
-                            color: Colors.blue, // Set border color to blue
-                            width: 2.0, // Set border width
-                          ),
-                        ),
+                        decoration: blue_border_white_bg(),
                         child: Row(
                           children: [
                             SizedBox(
                               width: 10,
                             ),
                             Icon(
-                              Icons.location_on_outlined,
+                              Icons.location_on_rounded,
                               size: 20,
                               color: Colors.blue,
                             ),
@@ -237,18 +189,23 @@ class account extends StatelessWidget {
                             ),
                             Text(
                               'Kulon Arab',
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12,
-                                  letterSpacing: 1,
-                                  color: Colors.grey),
+                              style: poppins_12_w700_grey(),
                             ),
                           ],
                         ), // Add your content inside the container
                         // Add padding around the content
                       ),
                     ),
+                    SizedBox(
+                      height: 150,
+                    ),
+                    Center(
+                      child: edit_button(),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(child: back_button())
                   ]),
             ),
           ),
@@ -256,22 +213,4 @@ class account extends StatelessWidget {
       ),
     );
   }
-}
-
-TextStyle poppins_30_semi() {
-  return TextStyle(
-      fontFamily: "Poppins",
-      fontWeight: FontWeight.w700,
-      fontSize: 30,
-      letterSpacing: 1,
-      color: Colors.white);
-}
-
-TextStyle poppins_16_semi() {
-  return TextStyle(
-    fontFamily: "Poppins",
-    fontWeight: FontWeight.w700,
-    fontSize: 16,
-    letterSpacing: 1,
-  );
 }
