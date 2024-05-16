@@ -82,41 +82,61 @@ class saldo extends StatelessWidget {
 }
 
 class back_button extends StatelessWidget {
-  const back_button({
-    super.key,
-  });
+  const back_button({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Profile()),
-      ),
+      onTap: () {
+        Navigator.push(
+          context,
+          _createRoute(), // Panggil _createRoute() saat tombol ditekan
+        );
+      },
       child: Container(
         height: 50,
         width: 200,
         decoration: BoxDecoration(
-          color: Colors.white, // Set background color to white
-          borderRadius: BorderRadius.circular(30.0), // Set rounded corners
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30.0),
           border: Border.all(
-            color: Colors.blue, // Set border color to blue
-            width: 2.0, // Set border width
+            color: Colors.blue,
+            width: 2.0,
           ),
         ),
         child: Center(
           child: Text(
             'BACK',
             style: TextStyle(
-                fontFamily: "Poppins",
-                fontWeight: FontWeight.w700,
-                fontSize: 20,
-                letterSpacing: 1,
-                color: Colors.blue),
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+              letterSpacing: 1,
+              color: Colors.blue,
+            ),
           ),
-        ), // Add your content inside the container
-        // Add padding around the content
+        ),
       ),
+    );
+  }
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          Profile(), // Halaman yang ingin Anda tampilkan
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, .0);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }

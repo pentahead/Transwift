@@ -38,86 +38,90 @@ class Booking extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 55,
-                    ),
-                    Center(
-                      child: Text(
-                        "Booking",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: "poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 36,
-                          letterSpacing: 2,
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 55,
+                      ),
+                      Center(
+                        child: Text(
+                          "Booking",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "poppins",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 36,
+                            letterSpacing: 2,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Text(
-                        "Pilih kendaraan",
-                        style: poppins16bold(),
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    Dropdown(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25),
-                      child: Text(
-                        "Dari",
-                        style: poppins_14(),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          "Pilih kendaraan",
+                          style: poppins16bold(),
+                        ),
                       ),
-                    ),
-                    input(),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25),
-                      child: Text(
-                        "Tujuan",
-                        style: poppins_14(),
+                      Dropdown(),
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    input(),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25, bottom: 10),
-                      child: Text(
-                        "Tanggal",
-                        style: poppins_16_semi(),
+                      Padding(
+                        padding: EdgeInsets.only(left: 25),
+                        child: Text(
+                          "Dari",
+                          style: poppins_14(),
+                        ),
                       ),
-                    ),
-                    DatePicker(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25),
-                      child: Text(
-                        "Jumlah Penumpang",
-                        style: poppins_14(),
+                      input(),
+                      Padding(
+                        padding: EdgeInsets.only(left: 25),
+                        child: Text(
+                          "Tujuan",
+                          style: poppins_14(),
+                        ),
                       ),
-                    ),
-                    input(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    button_done()
-                  ],
+                      input(),
+                      Padding(
+                        padding: EdgeInsets.only(left: 25, bottom: 10),
+                        child: Text(
+                          "Tanggal",
+                          style: poppins_16_semi(),
+                        ),
+                      ),
+                      DatePicker(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 25),
+                        child: Text(
+                          "Jumlah Penumpang",
+                          style: poppins_14(),
+                        ),
+                      ),
+                      input(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      button_done()
+                    ],
+                  ),
                 ),
               ),
             )
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: NavBar(
+        selectedIndex: 1,
+      ),
     );
   }
 

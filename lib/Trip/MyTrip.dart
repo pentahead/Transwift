@@ -43,7 +43,7 @@ class _MyTripState extends State<MyTrip> {
             ),
             Container(
               width: 430,
-              height: screenHeight * 0.722, // Adjusted height
+              height: screenHeight * 0.75, // Adjusted height
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50),
@@ -113,7 +113,9 @@ class _MyTripState extends State<MyTrip> {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: NavBar(
+        selectedIndex: 1,
+      ),
     );
   }
 

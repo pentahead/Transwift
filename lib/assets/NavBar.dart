@@ -1,47 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:transwift/Profile/account.dart';
+
+import 'package:transwift/home_page.dart';
+import 'package:transwift/History/History.dart';
 
 class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+  final int selectedIndex;
+
+  const NavBar({Key? key, required this.selectedIndex}) : super(key: key);
 
   @override
-  State<NavBar> createState() => _NavBar();
+  State<NavBar> createState() => _NavBarState();
 }
 
-class _NavBar extends State<NavBar> {
-  int _selectedIndex = 0; // State to track the currently selected item
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+class _NavBarState extends State<NavBar> {
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           IconButton(
             icon: Icon(Icons.home),
-            onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
-            color: _selectedIndex == 0 ? Colors.blue : Colors.black,
-            iconSize: _selectedIndex == 0 ? 30 : 24,
+            onPressed: () => _onItemTapped(0),
+            color: widget.selectedIndex == 0 ? Colors.blue : Colors.black,
+            iconSize: widget.selectedIndex == 0 ? 30 : 24,
           ),
           IconButton(
             icon: Icon(Icons.map_outlined),
             onPressed: () => _onItemTapped(1),
-            color: _selectedIndex == 1 ? Colors.blue : Colors.black,
-            iconSize: _selectedIndex == 1 ? 30 : 24,
+            color: widget.selectedIndex == 1 ? Colors.blue : Colors.black,
+            iconSize: widget.selectedIndex == 1 ? 30 : 24,
           ),
           IconButton(
             icon: Icon(Icons.account_circle),
             onPressed: () => _onItemTapped(2),
-            color: _selectedIndex == 2 ? Colors.blue : Colors.black,
-            iconSize: _selectedIndex == 2 ? 30 : 24,
+            color: widget.selectedIndex == 2 ? Colors.blue : Colors.black,
+            iconSize: widget.selectedIndex == 2 ? 30 : 24,
           ),
         ],
       ),
+    );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        Navigator.of(context)
+            .pushReplacement(_createRoute(InstagramHomePage()));
+        break;
+      case 1:
+        Navigator.of(context).pushReplacement(_createRoute(History()));
+        break;
+      case 2:
+        Navigator.of(context).pushReplacement(_createRoute(account()));
+        break;
+    }
+  }
+
+  Route _createRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }

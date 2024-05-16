@@ -382,7 +382,7 @@ class TopUp extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 200,
+                      height: 100,
                     ),
                     Center(child: back_button())
                   ],

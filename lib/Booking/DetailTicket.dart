@@ -122,7 +122,9 @@ class DetailTicket extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: NavBar(
+        selectedIndex: 1,
+      ),
     );
   }
 }

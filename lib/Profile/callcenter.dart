@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:transwift/Profile/profile.dart';
 import 'package:transwift/Profile/assets/widget.dart';
+import 'package:transwift/assets/NavBar.dart';
 
 class callcenter extends StatelessWidget {
   const callcenter({super.key});
@@ -143,7 +144,7 @@ class callcenter extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 500,
+                        height: 400,
                       ),
                       Center(
                           child: Padding(
@@ -156,6 +157,9 @@ class callcenter extends StatelessWidget {
                 ))
           ],
         ),
+      ),
+      bottomNavigationBar: NavBar(
+        selectedIndex: 2,
       ),
     );
   }

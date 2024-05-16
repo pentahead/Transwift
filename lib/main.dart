@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'home_page.dart';
+import 'package:transwift/Profile/profile.dart';
+import 'package:transwift/Trip/MyTrip.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
         '/home': (context) => InstagramHomePage(),
+        '/map': (context) => MyTrip(),
+        '/profile': (context) => Profile(),
       },
     );
   }
