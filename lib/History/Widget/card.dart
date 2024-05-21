@@ -1,5 +1,6 @@
 import 'package:transwift/History/Widget/button_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:transwift/trip/Map.dart';
 
 class card extends StatelessWidget {
   const card({
@@ -83,7 +84,12 @@ class card extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 200, right: 10, top: 20),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Map()),
+                  );
+                },
                 child: Container(
                   width: 100,
                   height: 30,

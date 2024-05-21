@@ -36,107 +36,30 @@ class _List extends State<List> {
         SizedBox(
           height: 40,
         ),
-        _buildRadioOption(1, "pergi ke pantai"),
+        _buildRadioOption(1, "Pergi ke jalan Ahmad Yani"),
         SizedBox(
           height: 20,
         ),
-        _buildRadioOption(2, "keluarkan alat kencing"),
+        _buildRadioOption(2, "Naik Bis Sugeng Rahayu jurusan jember"),
         SizedBox(
           height: 20,
         ),
-        _buildRadioOption(3, "pergi kesungai"),
+        _buildRadioOption(3, "Turun di terminal Tawang alun"),
         SizedBox(
           height: 20,
         ),
-        _buildRadioOption(4, "naik kappal"),
+        _buildRadioOption(4, "Pilih angkot jurusan Kampus"),
         SizedBox(
           height: 20,
         ),
-        _buildRadioOption(4, "naik kappal"),
+        _buildRadioOption(5, "Turun Di jalan Kalimantan"),
         SizedBox(
           height: 20,
         ),
-        _buildRadioOption(4, "naik kappal"),
+        _buildRadioOption(6, "Anda sudah Di tujuan"),
         SizedBox(
           height: 20,
         ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
-        SizedBox(
-          height: 20,
-        ),
-        _buildRadioOption(4, "naik kappal"),
       ],
     );
   }

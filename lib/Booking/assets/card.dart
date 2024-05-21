@@ -30,7 +30,7 @@ class CardList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  "Batik Air",
+                  "Sri Tanjung",
                   style: poppins16bold(),
                 ),
               ),
@@ -45,7 +45,7 @@ class CardList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 200),
                 child: Text(
-                  "R.5.000.000",
+                  "Rp, 350.000,00",
                   style: poppins16bold(),
                 ),
               ),

@@ -61,7 +61,7 @@ class DetailTicket extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(20),
                         child: Text(
-                          "CUKI AIR 465",
+                          "Sri Tanjung",
                           style: poppins16bold(),
                         ),
                       ),
@@ -95,7 +95,7 @@ class DetailTicket extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 20),
                         child: Text(
-                          "Rp. 2.500.000",
+                          "Rp. 350.000,00",
                           style: poppins16bold(),
                         ),
                       ),

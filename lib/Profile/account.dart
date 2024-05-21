@@ -119,7 +119,7 @@ class account extends StatelessWidget {
                                   width: 20,
                                 ),
                                 Text(
-                                  'WongIrengJembuten@gmail,com',
+                                  '222410102036@gmail,com',
                                   style: poppins_12_w700_grey(),
                                 ),
                               ],
@@ -191,7 +191,7 @@ class account extends StatelessWidget {
                                   width: 20,
                                 ),
                                 Text(
-                                  'Kulon Arab',
+                                  'Tanggul',
                                   style: poppins_12_w700_grey(),
                                 ),
                               ],

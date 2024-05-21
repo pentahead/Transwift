@@ -6,14 +6,12 @@ class Dropdown extends StatefulWidget {
 }
 
 class _DropdownState extends State<Dropdown> {
-  String _selectedItem = 'Option 1'; // Default selected item
+  String _selectedItem = 'Kereta Api'; // Default selected item
 
   List<String> _dropdownItems = [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Option 4',
-    'Option 5'
+    'Kereta Api',
+    'Bis',
+    'Pesawat'
   ]; // List of dropdown items
 
   @override
