@@ -33,6 +33,7 @@ dependencies:
   flutter_custom_widgets: ^0.0.3
   cupertino_icons: ^1.0.6
   weather: ^3.1.1
+  intl: ^0.19.0
 
 
 dev_dependencies:
