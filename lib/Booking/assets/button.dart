@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/Booking/ticket.dart';
-import 'package:transwift/instagram_body.dart';
 
-class button_done extends StatelessWidget {
-  const button_done({
+class ButtonDone extends StatelessWidget {
+  const ButtonDone({
     super.key,
   });
 
@@ -14,19 +13,19 @@ class button_done extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Ticket()),
+            MaterialPageRoute(builder: (context) => const Ticket()),
           );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color.fromRGBO(4, 140, 239, 1),
-          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-          textStyle: TextStyle(fontSize: 16),
-          minimumSize: Size(150, 50),
+          backgroundColor: const Color.fromRGBO(4, 140, 239, 1),
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+          textStyle: const TextStyle(fontSize: 16),
+          minimumSize: const Size(150, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
           ),
         ),
-        child: Text(
+        child: const Text(
           'Done',
           style: TextStyle(
             fontFamily: 'Poppins',
@@ -40,8 +39,8 @@ class button_done extends StatelessWidget {
   }
 }
 
-class button_next extends StatelessWidget {
-  const button_next({
+class ButtonNext extends StatelessWidget {
+  const ButtonNext({
     super.key,
   });
 
@@ -53,15 +52,15 @@ class button_next extends StatelessWidget {
           Navigator.pushReplacementNamed(context, '/home');
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color.fromRGBO(4, 140, 239, 1),
-          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-          textStyle: TextStyle(fontSize: 16),
-          minimumSize: Size(150, 50),
+          backgroundColor: const Color.fromRGBO(4, 140, 239, 1),
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+          textStyle: const TextStyle(fontSize: 16),
+          minimumSize: const Size(150, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
           ),
         ),
-        child: Text(
+        child: const Text(
           'Next',
           style: TextStyle(
             fontFamily: 'Poppins',
@@ -95,25 +94,25 @@ class _RadioButtonGroupState extends State<RadioButton> {
             groupValue: _selectedValue,
             onChanged: (value) => setState(() => _selectedValue = value!),
           ),
-          Text('My Balance'),
+          const Text('My Balance'),
         ]),
-        SizedBox(width: 10.0),
+        const SizedBox(width: 10.0),
         Row(children: [
           Radio<String>(
             value: '2',
             groupValue: _selectedValue,
             onChanged: (value) => setState(() => _selectedValue = value!),
           ),
-          Text('Credit Card'),
+          const Text('Credit Card'),
         ]),
-        SizedBox(width: 10.0),
+        const SizedBox(width: 10.0),
         Row(children: [
           Radio<String>(
             value: '3',
             groupValue: _selectedValue,
             onChanged: (value) => setState(() => _selectedValue = value!),
           ),
-          Text('Debit Card '),
+          const Text('Debit Card '),
         ]),
       ],
     );

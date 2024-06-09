@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class input extends StatelessWidget {
-  const input({
+class Input extends StatelessWidget {
+  const Input({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+    return const Padding(
+      padding: EdgeInsets.only(left: 25, right: 25, bottom: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

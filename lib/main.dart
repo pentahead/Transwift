@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:transwift/homepage_body.dart';
 import 'login_page.dart';
-import 'home_page.dart';
 import 'package:transwift/Profile/profile.dart';
-import 'package:transwift/Trip/MyTrip.dart';
+import 'package:transwift/Trip/my_trip.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Menghilangkan teks "debug"
-      title: 'Instagram',
+      debugShowCheckedModeBanner: false, 
+      title: 'Trans Swift',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
-        '/home': (context) => InstagramHomePage(),
-        '/map': (context) => MyTrip(),
-        '/profile': (context) => Profile(),
+        '/': (context) => const LoginPage(),
+        '/home': (context) => const HomepageBody(),
+        '/map': (context) => const MyTrip(),
+        '/profile': (context) => const Profile(),
       },
     );
   }

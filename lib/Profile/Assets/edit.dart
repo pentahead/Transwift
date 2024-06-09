@@ -4,9 +4,10 @@ class Edit extends StatefulWidget {
   final String label;
   final IconData icon;
 
-  Edit({required this.label, required this.icon});
+  const Edit({super.key, required this.label, required this.icon});
 
   @override
+  // ignore: library_private_types_in_public_api
   _EditState createState() => _EditState();
 }
 
@@ -39,20 +40,20 @@ class _EditState extends State<Edit> {
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.blue,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.blue,
                           width: 2.0,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.blue,
                           width: 2.0,
                         ),
@@ -61,9 +62,9 @@ class _EditState extends State<Edit> {
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   color: Colors.blue,
                   size: 30,

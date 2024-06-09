@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
+  const CustomButton({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CustomButtonState createState() => _CustomButtonState();
 }
 
@@ -54,7 +57,7 @@ class CustomToggleButton extends StatelessWidget {
   final int selectedIndex;
   final Function onPressed;
 
-  CustomToggleButton({
+  const CustomToggleButton({super.key, 
     required this.title,
     required this.index,
     required this.selectedIndex,
@@ -66,7 +69,7 @@ class CustomToggleButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => onPressed(),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
           color: index == selectedIndex ? Colors.blue : Colors.white,
           borderRadius: BorderRadius.circular(20),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/account.dart';
 
-import 'package:transwift/home_page.dart';
 import 'package:transwift/History/History.dart';
+import 'package:transwift/Profile/account.dart';
+import 'package:transwift/homepage_body.dart';
 
 class NavBar extends StatefulWidget {
   final int selectedIndex;
 
-  const NavBar({Key? key, required this.selectedIndex}) : super(key: key);
+  const NavBar({super.key, required this.selectedIndex});
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -24,19 +24,19 @@ class _NavBarState extends State<NavBar> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           IconButton(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             onPressed: () => _onItemTapped(0),
             color: widget.selectedIndex == 0 ? Colors.blue : Colors.black,
             iconSize: widget.selectedIndex == 0 ? 30 : 24,
           ),
           IconButton(
-            icon: Icon(Icons.map_outlined),
+            icon: const Icon(Icons.map_outlined),
             onPressed: () => _onItemTapped(1),
             color: widget.selectedIndex == 1 ? Colors.blue : Colors.black,
             iconSize: widget.selectedIndex == 1 ? 30 : 24,
           ),
           IconButton(
-            icon: Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle),
             onPressed: () => _onItemTapped(2),
             color: widget.selectedIndex == 2 ? Colors.blue : Colors.black,
             iconSize: widget.selectedIndex == 2 ? 30 : 24,
@@ -53,13 +53,13 @@ class _NavBarState extends State<NavBar> {
     switch (index) {
       case 0:
         Navigator.of(context)
-            .pushReplacement(_createRoute(InstagramHomePage()));
+            .pushReplacement(_createRoute(const HomepageBody()));
         break;
       case 1:
-        Navigator.of(context).pushReplacement(_createRoute(History()));
+        Navigator.of(context).pushReplacement(_createRoute(const History()));
         break;
       case 2:
-        Navigator.of(context).pushReplacement(_createRoute(account()));
+        Navigator.of(context).pushReplacement(_createRoute(const Account()));
         break;
     }
   }

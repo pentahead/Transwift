@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/Booking/assets/jadwal.dart';
-import 'package:transwift/Booking/DetailTicket.dart';
+import 'package:transwift/Booking/detail_ticket.dart';
 
 class CardList extends StatelessWidget {
   const CardList({super.key});
@@ -10,7 +10,7 @@ class CardList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Card(
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: const Color.fromARGB(255, 255, 255, 255),
         surfaceTintColor: Colors.white, // Set background color to pure white
         elevation: 4.0,
         shadowColor: const Color.fromARGB(255, 10, 10, 10)
@@ -22,7 +22,7 @@ class CardList extends StatelessWidget {
         child: InkWell(
           onTap: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => DetailTicket()),
+            MaterialPageRoute(builder: (context) => const DetailTicket()),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class CardList extends StatelessWidget {
                   style: poppins16bold(),
                 ),
               ),
-              jadwal(),
+              const Jadwal(),
               Padding(
                 padding: const EdgeInsets.only(left: 30),
                 child: Text(
@@ -49,7 +49,7 @@ class CardList extends StatelessWidget {
                   style: poppins16bold(),
                 ),
               ),
-              jadwal(),
+              const Jadwal(),
               Padding(
                 padding: const EdgeInsets.only(left: 30, bottom: 20),
                 child: Text(
@@ -66,7 +66,7 @@ class CardList extends StatelessWidget {
 }
 
 TextStyle poppins16bold() {
-  return TextStyle(
+  return const TextStyle(
     fontFamily: "poppins",
     fontWeight: FontWeight.bold,
     fontSize: 16,
@@ -75,7 +75,7 @@ TextStyle poppins16bold() {
 }
 
 TextStyle poppins14() {
-  return TextStyle(
+  return const TextStyle(
     fontFamily: "poppins",
     fontWeight: FontWeight.w500,
     fontSize: 14,

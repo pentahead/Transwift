@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -16,11 +19,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     super.initState();
     _logoAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
 
     _logoAnimationOffset = Tween<Offset>(
-      begin: Offset(0, -2.0),
+      begin: const Offset(0, -2.0),
       end: Offset.zero,
     ).animate(
       CurvedAnimation(
@@ -31,7 +34,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
     _textAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
 
     _textAnimationOpacity = Tween<double>(
@@ -64,7 +67,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Spacer(), // Tambahkan Spacer di atas logo
+              const Spacer(), // Tambahkan Spacer di atas logo
               SlideTransition(
                 position: _logoAnimationOffset,
                 child: Image.asset(
@@ -73,10 +76,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   height: 250, // Sesuaikan tinggi gambar
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               FadeTransition(
                 opacity: _textAnimationOpacity,
-                child: Text(
+                child: const Text(
                   'Login',
                   style: TextStyle(
                     color: Colors.black,
@@ -85,54 +88,54 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Username',
-                  prefixIcon: Icon(Icons.person,
+                  prefixIcon: const Icon(Icons.person,
                       color: Colors.blue), // Mengatur warna ikon
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    borderSide: const BorderSide(color: Colors.blue),
                     borderRadius:
                         BorderRadius.circular(10.0), // Mengatur sudut bulat
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    borderSide: const BorderSide(color: Colors.blue),
                     borderRadius:
                         BorderRadius.circular(10.0), // Mengatur sudut bulat
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    borderSide: const BorderSide(color: Colors.blue),
                     borderRadius:
                         BorderRadius.circular(10.0), // Mengatur sudut bulat
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock,
+                  prefixIcon: const Icon(Icons.lock,
                       color: Colors.blue), // Mengatur warna ikon
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    borderSide: const BorderSide(color: Colors.blue),
                     borderRadius:
                         BorderRadius.circular(10.0), // Mengatur sudut bulat
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    borderSide: const BorderSide(color: Colors.blue),
                     borderRadius:
                         BorderRadius.circular(10.0), // Mengatur sudut bulat
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    borderSide: const BorderSide(color: Colors.blue),
                     borderRadius:
                         BorderRadius.circular(10.0), // Mengatur sudut bulat
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -149,30 +152,30 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/home');
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
+                  backgroundColor: WidgetStateProperty.all<Color>(
                       Colors.blue), // Mengatur warna tombol
-                  minimumSize: MaterialStateProperty.all<Size>(
-                      Size(double.infinity, 50)), // Mengatur lebar tombol
+                  minimumSize: WidgetStateProperty.all<Size>(
+                      const Size(double.infinity, 50)), // Mengatur lebar tombol
                 ),
-                child: Text(
+                child: const Text(
                   'Login',
                   style: TextStyle(color: Colors.white), // Mengatur warna teks
                 ),
               ),
-              SizedBox(height: 10),
-              Row(
+              const SizedBox(height: 10),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Or automatically join with'),
                 ],
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 10),
@@ -188,7 +191,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   SizedBox(width: 10),
                 ],
               ),
-              Spacer(), // Tambahkan Spacer di bawah tombol Login
+              const Spacer(), // Tambahkan Spacer di bawah tombol Login
             ],
           ),
         ),

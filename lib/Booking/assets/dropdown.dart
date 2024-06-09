@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Dropdown extends StatefulWidget {
+  const Dropdown({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DropdownState createState() => _DropdownState();
 }
 
 class _DropdownState extends State<Dropdown> {
   String _selectedItem = 'Kereta Api'; // Default selected item
 
-  List<String> _dropdownItems = [
+  final List<String> _dropdownItems = [
     'Kereta Api',
     'Bis',
     'Pesawat'
@@ -32,14 +35,14 @@ class _DropdownState extends State<Dropdown> {
                 _selectedItem = newValue!;
               });
             },
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
             ),
             items: _dropdownItems.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(value),
                 ),
               );

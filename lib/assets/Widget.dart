@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/Topup.dart';
 import 'package:transwift/Profile/profile.dart';
 import 'package:transwift/Profile/account_edit.dart';
 
@@ -22,17 +21,6 @@ class saldo extends StatelessWidget {
               "card",
               style: Poppins_w700_10_grey(),
             ),
-            GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TopUp()),
-              ),
-              child: Icon(
-                Icons.credit_card,
-                size: 30,
-                color: Colors.blue,
-              ),
-            ),
           ],
         ),
         Column(
@@ -43,8 +31,8 @@ class saldo extends StatelessWidget {
               "Saldo",
               style: Poppins_w700_10_grey(),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 5),
               child: Text(
                 "Rp.250.000",
                 style: TextStyle(
@@ -63,17 +51,6 @@ class saldo extends StatelessWidget {
               "card",
               style: Poppins_w700_10_grey(),
             ),
-            GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TopUp()),
-              ),
-              child: Icon(
-                Icons.add_box_rounded,
-                size: 30,
-                color: Colors.blue,
-              ),
-            ),
           ],
         ),
       ],
@@ -81,8 +58,8 @@ class saldo extends StatelessWidget {
   }
 }
 
-class back_button extends StatelessWidget {
-  const back_button({Key? key}) : super(key: key);
+class BackButton extends StatelessWidget {
+  const BackButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +81,7 @@ class back_button extends StatelessWidget {
             width: 2.0,
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             'BACK',
             style: TextStyle(
@@ -123,7 +100,7 @@ class back_button extends StatelessWidget {
   Route _createRoute() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          Profile(), // Halaman yang ingin Anda tampilkan
+          const Profile(), // Halaman yang ingin Anda tampilkan
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, .0);
         const end = Offset.zero;
@@ -141,8 +118,8 @@ class back_button extends StatelessWidget {
   }
 }
 
-class edit_button extends StatelessWidget {
-  const edit_button({
+class EditButton extends StatelessWidget {
+  const EditButton({
     super.key,
   });
 
@@ -151,7 +128,7 @@ class edit_button extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => accountEdit()),
+        MaterialPageRoute(builder: (context) => const accountEdit()),
       ),
       child: Container(
         height: 50,
@@ -164,13 +141,13 @@ class edit_button extends StatelessWidget {
             width: 2.0, // Set border width
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
                 child: Icon(
                   Icons.edit,
                   color: Colors.white,
@@ -194,8 +171,8 @@ class edit_button extends StatelessWidget {
   }
 }
 
-class edit_icon extends StatelessWidget {
-  const edit_icon({
+class EditIcon extends StatelessWidget {
+  const EditIcon({
     super.key,
   });
 
@@ -205,7 +182,7 @@ class edit_icon extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10),
       child: GestureDetector(
         onTap: () {},
-        child: Icon(
+        child: const Icon(
           Icons.edit,
           color: Colors.blue,
           size: 30,
@@ -225,7 +202,7 @@ class Logout extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Profile()),
+        MaterialPageRoute(builder: (context) => const Profile()),
       ),
       child: Container(
         height: 50,
@@ -238,7 +215,7 @@ class Logout extends StatelessWidget {
             width: 2.0, // Set border width
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             'Logout',
             style: TextStyle(
@@ -255,6 +232,7 @@ class Logout extends StatelessWidget {
   }
 }
 
+// ignore: non_constant_identifier_names
 BoxDecoration blue_border_white_bg() {
   return BoxDecoration(
     color: Colors.white, // Set background color to white
@@ -266,8 +244,9 @@ BoxDecoration blue_border_white_bg() {
   );
 }
 
+// ignore: non_constant_identifier_names
 TextStyle poppins_30_semi_white() {
-  return TextStyle(
+  return const TextStyle(
       fontFamily: "Poppins",
       fontWeight: FontWeight.w900,
       fontSize: 30,
@@ -275,8 +254,9 @@ TextStyle poppins_30_semi_white() {
       color: Colors.white);
 }
 
+// ignore: non_constant_identifier_names
 TextStyle poppins_16_semi() {
-  return TextStyle(
+  return const TextStyle(
     fontFamily: "Poppins",
     fontWeight: FontWeight.w800,
     fontSize: 16,
@@ -284,8 +264,9 @@ TextStyle poppins_16_semi() {
   );
 }
 
+// ignore: non_constant_identifier_names
 TextStyle poppins_12_Black_w700() {
-  return TextStyle(
+  return const TextStyle(
       fontFamily: "Poppins",
       fontWeight: FontWeight.w700,
       fontSize: 12,
@@ -293,8 +274,9 @@ TextStyle poppins_12_Black_w700() {
       color: Colors.black);
 }
 
+// ignore: non_constant_identifier_names
 TextStyle poppins_12_w700_grey() {
-  return TextStyle(
+  return const TextStyle(
       fontFamily: "Poppins",
       fontWeight: FontWeight.w700,
       fontSize: 12,
@@ -302,8 +284,9 @@ TextStyle poppins_12_w700_grey() {
       color: Colors.grey);
 }
 
+// ignore: non_constant_identifier_names
 TextStyle Poppins_w700_10_grey() {
-  return TextStyle(
+  return const TextStyle(
       fontFamily: "Poppins",
       fontWeight: FontWeight.w700,
       fontSize: 10,

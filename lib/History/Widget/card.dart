@@ -1,9 +1,9 @@
-import 'package:transwift/History/Widget/button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:transwift/trip/Map.dart';
 
-class card extends StatelessWidget {
-  const card({
+// ignore: camel_case_types
+class CardHistory extends StatelessWidget {
+  const CardHistory({
     super.key,
   });
 
@@ -24,7 +24,7 @@ class card extends StatelessWidget {
               spreadRadius: 5.0, // Adjust spreadRadius for shadow diffusion
               blurRadius: 7.0, // Adjust blurRadius for shadow softness
               offset:
-                  Offset(0.0, 4.0), // Adjust offset for shadow position (x, y)
+                  const Offset(0.0, 4.0), // Adjust offset for shadow position (x, y)
             ),
           ],
         ),
@@ -41,18 +41,18 @@ class card extends StatelessWidget {
                   Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         shape: BoxShape.circle, color: Colors.blue),
-                    child: Icon(
+                    child: const Icon(
                       Icons.check_circle_outline_rounded,
                       color: Colors.white,
                       size: 35,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Text(
+                  const Text(
                     "Pantai Papuma",
                     style: TextStyle(
                         fontSize: 20,
@@ -70,8 +70,8 @@ class card extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 60, right: 20, top: 10),
+            const Padding(
+              padding: EdgeInsets.only(left: 60, right: 20, top: 10),
               child: Text(
                 "10-2-24",
                 style: TextStyle(
@@ -87,7 +87,7 @@ class card extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Map()),
+                    MaterialPageRoute(builder: (context) => const Map()),
                   );
                 },
                 child: Container(
@@ -97,7 +97,7 @@ class card extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.blue,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Detail",
                       style: TextStyle(

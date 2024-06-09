@@ -15,7 +15,7 @@ class History extends StatelessWidget {
             color: Colors.blue,
             height: 75,
             width: 2000,
-            child: Row(
+            child: const Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -36,22 +36,22 @@ class History extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          CustomButton(),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Container(
+          const CustomButton(),
+          const Padding(
+            padding: EdgeInsets.all(20),
+            child: SizedBox(
               width: 500,
               height: 600,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    card(),
-                    card(),
-                    card(),
-                    card(),
+                    CardHistory(),
+                    CardHistory(),
+                    CardHistory(),
+                    CardHistory(),
                   ],
                 ),
               ),

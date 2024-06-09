@@ -1,16 +1,18 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/Assets/Widget.dart';
 import 'package:transwift/Profile/Assets/edit.dart';
 import 'package:transwift/assets/NavBar.dart';
+import 'package:transwift/Profile/Assets/widget_profile.dart';
 
 class accountEdit extends StatelessWidget {
-  const accountEdit({Key? key});
+  const accountEdit({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -27,7 +29,7 @@ class accountEdit extends StatelessWidget {
               bottom: 0,
               child: Container(
                 height: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -48,14 +50,14 @@ class accountEdit extends StatelessWidget {
                         style: poppins_30_semi_white(),
                       ),
                     ),
-                    Center(
+                    const Center(
                       child: CircleAvatar(
                         radius: 60,
                         backgroundImage:
                             AssetImage('assets/images/profile.jpg'),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
@@ -65,44 +67,44 @@ class accountEdit extends StatelessWidget {
                             "Nama",
                             style: poppins_16_semi(),
                           ),
-                          SizedBox(height: 10),
-                          Edit(
+                          const SizedBox(height: 10),
+                          const Edit(
                             label: "Nama",
                             icon: Icons.person,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Text(
                             "Email",
                             style: poppins_16_semi(),
                           ),
-                          SizedBox(height: 10),
-                          Edit(
+                          const SizedBox(height: 10),
+                          const Edit(
                             label: "Email",
                             icon: Icons.email,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Text(
                             "Phone Number",
                             style: poppins_16_semi(),
                           ),
-                          SizedBox(height: 10),
-                          Edit(
+                          const SizedBox(height: 10),
+                          const Edit(
                             label: "Phone Number",
                             icon: Icons.phone,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Text(
                             "Alamat",
                             style: poppins_16_semi(),
                           ),
-                          SizedBox(height: 10),
-                          Edit(
+                          const SizedBox(height: 10),
+                          const Edit(
                             label: "Alamat",
                             icon: Icons.location_on,
                           ),
-                          SizedBox(height: 30),
-                          Center(
-                            child: back_button(),
+                          const SizedBox(height: 30),
+                          const Center(
+                            child: Backbutton(),
                           ),
                         ],
                       ),
@@ -114,7 +116,7 @@ class accountEdit extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(selectedIndex: 2),
+      bottomNavigationBar: const NavBar(selectedIndex: 2),
     );
   }
 }

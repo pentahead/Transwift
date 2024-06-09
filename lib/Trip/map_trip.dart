@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:transwift/homepage_body.dart';
 import 'package:transwift/trip/assets/Map_List.dart';
-import 'package:transwift/home_page.dart';
 
 class Map extends StatelessWidget {
   const Map({super.key});
@@ -18,8 +17,8 @@ class Map extends StatelessWidget {
             child: Container(
               width: 430,
               height: 350, // Adjusted height
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 0, 0),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 255, 0, 0),
               ),
             ),
           ),
@@ -30,7 +29,7 @@ class Map extends StatelessWidget {
               child: Container(
                 width: 200,
                 height: 80,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(0),
                     topRight: Radius.circular(0), // No border on top right
@@ -40,7 +39,7 @@ class Map extends StatelessWidget {
                   color: Colors.blue,
                 ),
 
-                child: Center(
+                child: const Center(
                     child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,7 +65,7 @@ class Map extends StatelessWidget {
             left: 0,
             child: Container(
               height: 500, // Adjusted height
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20), // No border on top right
@@ -76,13 +75,13 @@ class Map extends StatelessWidget {
                   color: Colors.white),
               child: Column(
                 children: [
-                  Container(
+                  const SizedBox(
                     width: 430,
                     height: 300, // Adjusted height
 
                     child: List(),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   ElevatedButton(
@@ -90,28 +89,28 @@ class Map extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => InstagramHomePage()),
+                            builder: (context) => const HomepageBody()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(
+                      backgroundColor: const Color.fromRGBO(
                           255, 255, 255, 1), // Light gray background
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 12), // Adjust padding as needed
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           fontSize: 16,
-                          color: const Color.fromARGB(
+                          color: Color.fromARGB(
                               255, 255, 255, 255)), // Black text
-                      minimumSize: Size(150, 50),
+                      minimumSize: const Size(150, 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0),
-                        side: BorderSide(
+                        side: const BorderSide(
                             color: Colors.blue,
                             width: 2.0), // Blue border with 2.0 width
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Done',
                       style: TextStyle(
                         fontFamily: 'Poppins',

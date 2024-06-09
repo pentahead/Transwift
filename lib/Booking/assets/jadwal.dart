@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class jadwal extends StatelessWidget {
-  const jadwal({
+class Jadwal extends StatelessWidget {
+  const Jadwal({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         SizedBox(
           width: 10,

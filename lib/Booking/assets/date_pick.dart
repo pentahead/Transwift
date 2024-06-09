@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DatePicker extends StatefulWidget {
+  const DatePicker({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DatePickerState createState() => _DatePickerState();
 }
 
@@ -35,7 +38,7 @@ class _DatePickerState extends State<DatePicker> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.blue), // warna border biru
               borderRadius: BorderRadius.circular(5.0), // sudut border
@@ -45,17 +48,17 @@ class _DatePickerState extends State<DatePicker> {
               children: <Widget>[
                 Text(
                   "${selectedDate.toLocal()}".split(' ')[0],
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 20.0),
+                const SizedBox(width: 20.0),
                 ElevatedButton(
                   onPressed: () => _selectDate(context),
-                  child: Text('Select date'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(253, 253, 253, 1),
+                    backgroundColor: const Color.fromRGBO(253, 253, 253, 1),
                     surfaceTintColor: Colors.white,
-                    textStyle: TextStyle(fontSize: 16),
+                    textStyle: const TextStyle(fontSize: 16),
                   ),
+                  child: const Text('Select date'),
                 ),
               ],
             ),

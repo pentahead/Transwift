@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class List extends StatefulWidget {
   const List({super.key});
@@ -14,13 +13,13 @@ class _List extends State<List> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: 40,
         left: 40,
       ),
       child: Center(
         child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: _buildRadio(),
           ),
@@ -33,31 +32,31 @@ class _List extends State<List> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
         _buildRadioOption(1, "Pergi ke jalan Ahmad Yani"),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         _buildRadioOption(2, "Naik Bis Sugeng Rahayu jurusan jember"),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         _buildRadioOption(3, "Turun di terminal Tawang alun"),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         _buildRadioOption(4, "Pilih angkot jurusan Kampus"),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         _buildRadioOption(5, "Turun Di jalan Kalimantan"),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         _buildRadioOption(6, "Anda sudah Di tujuan"),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
       ],
@@ -76,10 +75,10 @@ class _List extends State<List> {
             });
           },
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontFamily: "poppins",
             fontWeight: FontWeight.w500,

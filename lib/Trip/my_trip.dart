@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:transwift/Trip/assets/radio_button.dart';
 import 'package:transwift/trip/Map.dart';
 import 'package:transwift/assets/NavBar.dart';
@@ -14,8 +13,8 @@ class MyTrip extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 10),
+            const Padding(
+              padding: EdgeInsets.only(top: 40, bottom: 10),
               child: Center(
                 child: Text(
                   "PICK A ROUTE !",
@@ -33,7 +32,7 @@ class MyTrip extends StatelessWidget {
               child: Container(
                 width: 2772,
                 height: 772,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
@@ -42,9 +41,9 @@ class MyTrip extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding:
-                          const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                          EdgeInsets.only(left: 20, top: 10, bottom: 10),
                       child: Text(
                         "Destination",
                         style: TextStyle(
@@ -54,8 +53,8 @@ class MyTrip extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
+                    const Padding(
+                      padding: EdgeInsets.all(20),
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: 'Search Destination here',
@@ -80,18 +79,18 @@ class MyTrip extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: RadioButtons(),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 175,
                     ),
                     Center(
                       child: GestureDetector(
                         onTap: () => Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Map()),
+                          MaterialPageRoute(builder: (context) => const Map()),
                         ),
                         child: Container(
                           height: 50,
@@ -105,7 +104,7 @@ class MyTrip extends StatelessWidget {
                               width: 2.0, // Set border width
                             ),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Done',
                               style: TextStyle(
@@ -127,7 +126,7 @@ class MyTrip extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(
+      bottomNavigationBar: const NavBar(
         selectedIndex: 1,
       ),
     );
