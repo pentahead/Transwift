@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               SlideTransition(
                 position: _logoAnimationOffset,
                 child: Image.asset(
-                  'assets/images/login_logo.png', // Ganti dengan path gambar Anda
+                  'assets/images/login_logo.png', 
                   width: 250,
                   height: 250,
                 ),
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 children: [
                   TextButton(
                     onPressed: () {
-                      // Tindakan yang akan diambil saat tombol Forget Password ditekan
+                     
                     },
                     child: Text(
                       'Forget Password?',
