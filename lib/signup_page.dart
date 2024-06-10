@@ -128,12 +128,12 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Handle sign up logic here
+                 
                 },
                 child: const Text(
                   'Sign Up',
                   style: TextStyle(
-                    color: Colors.white, // Warna teks putih
+                    color: Colors.white, 
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
