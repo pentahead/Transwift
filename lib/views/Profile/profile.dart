@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/account.dart';
-import 'package:transwift/Profile/Assets/widget_profile.dart';
-import 'package:transwift/Profile/callcenter.dart';
+import 'package:transwift/views/Profile/account.dart';
+import 'package:transwift/views/Profile/Assets/widget_profile.dart';
+import 'package:transwift/views/Profile/callcenter.dart';
 import 'package:transwift/assets/NavBar.dart';
 
 class Profile extends StatelessWidget {

@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/homepage_body.dart';
+import 'package:transwift/lc.dart';
 import 'login_page.dart';
-import 'package:transwift/Profile/profile.dart';
-import 'package:transwift/Trip/my_trip.dart';
+import 'package:transwift/views/Profile/profile.dart';
+import 'package:transwift/views/Trip/my_trip.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: 'AIzaSyAmsQVPK-xAUkNKHGmrgSWGEXp3gYgJxnw',
+      appId: '1:956660159455:android:0a85fb11f735f91cbe6a6a',
+      messagingSenderId: '956660159455',
+      projectId: 'transswift-95a01',
+    ),
+  );
+  await initializeDependencies();
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

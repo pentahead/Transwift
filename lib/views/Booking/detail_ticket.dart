@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Booking/assets/card.dart';
+import 'package:transwift/views/Booking/assets/jadwal.dart';
+import 'package:transwift/views/Booking/assets/button.dart';
+import 'package:transwift/assets/NavBar.dart';
 
-class Ticket extends StatelessWidget {
-  const Ticket({super.key});
+class DetailTicket extends StatelessWidget {
+  const DetailTicket({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class Ticket extends StatelessWidget {
                     ),
                     const Center(
                       child: Text(
-                        "Booking",
+                        "Payment",
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: "poppins",
@@ -57,32 +59,68 @@ class Ticket extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: Text(
-                        "Daftar Tiket",
+                        "Sri Tanjung",
+                        style: poppins16bold(),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Jadwal(),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        "Berangkat",
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Jadwal(),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20, bottom: 20),
+                      child: Text(
+                        "Pulang",
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        "Price",
                         style: poppins16bold(),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 50),
-                      child: SizedBox(
-                        height: 500, // Adjust height as needed
-                        child: ListView(
-                          scrollDirection: Axis.vertical, // Scroll vertically
-                          children: const [
-                            CardList(),
-                            CardList(),
-                            CardList(),
-                            CardList(),
-                            CardList(),
-                            CardList(),
-                          ],
-                        ),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        "Rp. 350.000,00",
+                        style: poppins16bold(),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      child: Text(
+                        "Payment Method",
+                        style: poppins16bold(),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: RadioButton(),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    const Center(
+                      child: ButtonNext(),
+                    )
                   ]),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: const NavBar(
+        selectedIndex: 1,
       ),
     );
   }

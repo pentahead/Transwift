@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:transwift/History/History.dart';
-import 'package:transwift/Profile/account.dart';
+import 'package:transwift/views/History/History.dart';
+import 'package:transwift/views/Profile/account.dart';
 import 'package:transwift/homepage_body.dart';
 
 class NavBar extends StatefulWidget {

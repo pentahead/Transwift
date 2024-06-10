@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Booking/assets/Button.dart';
+import 'package:transwift/views/Booking/assets/Button.dart';
 
-import 'package:transwift/Booking/assets/date_pick.dart';
-import 'package:transwift/Booking/assets/dropdown.dart';
-import 'package:transwift/Booking/assets/input.dart';
+import 'package:transwift/views/Booking/assets/date_pick.dart';
+import 'package:transwift/views/Booking/assets/dropdown.dart';
+import 'package:transwift/views/Booking/assets/input.dart';
 import 'package:transwift/assets/NavBar.dart';
 
 class Booking extends StatelessWidget {

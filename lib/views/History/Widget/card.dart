@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/trip/Map.dart';
+import 'package:transwift/views/trip/map_trip.dart';
 
 // ignore: camel_case_types
 class CardHistory extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/homepage_body.dart';
-import 'package:transwift/trip/assets/Map_List.dart';
+import 'package:transwift/views/trip/assets/Map_List.dart';
 
 class Map extends StatelessWidget {
   const Map({super.key});

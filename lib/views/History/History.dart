@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/History/Widget/button_bar.dart';
-import 'package:transwift/History/Widget/card.dart';
+import 'package:transwift/views/History/Widget/button_bar.dart';
+import 'package:transwift/views/History/Widget/card.dart';
 
 class History extends StatelessWidget {
   const History({super.key});

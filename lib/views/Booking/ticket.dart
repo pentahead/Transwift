@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Booking/assets/jadwal.dart';
-import 'package:transwift/Booking/assets/button.dart';
-import 'package:transwift/assets/NavBar.dart';
+import 'package:transwift/views/Booking/assets/card.dart';
 
-class DetailTicket extends StatelessWidget {
-  const DetailTicket({super.key});
+class Ticket extends StatelessWidget {
+  const Ticket({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class DetailTicket extends StatelessWidget {
                     ),
                     const Center(
                       child: Text(
-                        "Payment",
+                        "Booking",
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: "poppins",
@@ -59,68 +57,32 @@ class DetailTicket extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: Text(
-                        "Sri Tanjung",
-                        style: poppins16bold(),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Jadwal(),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Text(
-                        "Berangkat",
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Jadwal(),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, bottom: 20),
-                      child: Text(
-                        "Pulang",
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        "Price",
+                        "Daftar Tiket",
                         style: poppins16bold(),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        "Rp. 350.000,00",
-                        style: poppins16bold(),
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 50),
+                      child: SizedBox(
+                        height: 500, // Adjust height as needed
+                        child: ListView(
+                          scrollDirection: Axis.vertical, // Scroll vertically
+                          children: const [
+                            CardList(),
+                            CardList(),
+                            CardList(),
+                            CardList(),
+                            CardList(),
+                            CardList(),
+                          ],
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 20),
-                      child: Text(
-                        "Payment Method",
-                        style: poppins16bold(),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: RadioButton(),
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    const Center(
-                      child: ButtonNext(),
-                    )
                   ]),
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: const NavBar(
-        selectedIndex: 1,
       ),
     );
   }

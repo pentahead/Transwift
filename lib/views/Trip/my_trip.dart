@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Trip/assets/radio_button.dart';
-import 'package:transwift/trip/Map.dart';
+import 'package:transwift/views/Trip/assets/radio_button.dart';
+import 'package:transwift/views/trip/map_trip.dart';
 import 'package:transwift/assets/NavBar.dart';
 
 class MyTrip extends StatelessWidget {

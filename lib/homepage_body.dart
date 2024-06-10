@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/Assets/weather_api.dart';
-import 'package:transwift/Trip/my_trip.dart';
-import 'package:transwift/Booking/booking.dart';
-import 'package:transwift/Profile/profile.dart';
+import 'package:transwift/views/Profile/Assets/weather_api.dart';
+import 'package:transwift/views/Trip/my_trip.dart';
+import 'package:transwift/views/Booking/booking.dart';
+import 'package:transwift/views/Profile/profile.dart';
 import 'package:transwift/assets/widget.dart';
 
 class HomepageBody extends StatelessWidget {

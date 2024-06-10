@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/Assets/widget_profile.dart';
+import 'package:transwift/views/Profile/Assets/widget_profile.dart';
 import 'package:transwift/assets/NavBar.dart';
 
 class Account extends StatelessWidget {

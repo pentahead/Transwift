@@ -1,9 +1,9 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/Assets/edit.dart';
+import 'package:transwift/views/Profile/Assets/edit.dart';
 import 'package:transwift/assets/NavBar.dart';
-import 'package:transwift/Profile/Assets/widget_profile.dart';
+import 'package:transwift/views/Profile/Assets/widget_profile.dart';
 
 class accountEdit extends StatelessWidget {
   const accountEdit({super.key});

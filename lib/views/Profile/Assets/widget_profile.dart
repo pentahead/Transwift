@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Profile/profile.dart';
-import 'package:transwift/Profile/account_edit.dart';
+import 'package:transwift/views/Profile/profile.dart';
+import 'package:transwift/views/Profile/account_edit.dart';
 
 class Saldo extends StatelessWidget {
   const Saldo({

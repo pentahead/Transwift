@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Booking/assets/jadwal.dart';
-import 'package:transwift/Booking/detail_ticket.dart';
+import 'package:transwift/views/Booking/assets/jadwal.dart';
+import 'package:transwift/views/Booking/detail_ticket.dart';
 
 class CardList extends StatelessWidget {
   const CardList({super.key});
@@ -14,10 +14,10 @@ class CardList extends StatelessWidget {
         surfaceTintColor: Colors.white, // Set background color to pure white
         elevation: 4.0,
         shadowColor: const Color.fromARGB(255, 10, 10, 10)
-            .withOpacity(0.8), // Asdjust shadow color as needed
+            .withOpacity(0.8),
         shape: RoundedRectangleBorder(
           borderRadius:
-              BorderRadius.circular(10.0), // Adjust corner radius as needed
+              BorderRadius.circular(10.0),
         ),
         child: InkWell(
           onTap: () => Navigator.push(

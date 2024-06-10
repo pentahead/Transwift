@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/Booking/ticket.dart';
+import 'package:transwift/views/Booking/ticket.dart';
 
 class ButtonDone extends StatelessWidget {
   const ButtonDone({
