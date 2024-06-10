@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:transwift/views/Profile/profile.dart';
 import 'package:transwift/views/Profile/account_edit.dart';
 
-class saldo extends StatelessWidget {
-  const saldo({
+class Saldo extends StatelessWidget {
+  const Saldo({
     super.key,
   });
 
@@ -58,8 +58,8 @@ class saldo extends StatelessWidget {
   }
 }
 
-class BackButton extends StatelessWidget {
-  const BackButton({super.key});
+class Backbutton extends StatelessWidget {
+  const Backbutton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class BackButton extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          _createRoute(), // Panggil _createRoute() saat tombol ditekan
+          _createRoute(),
         );
       },
       child: Container(
@@ -99,8 +99,65 @@ class BackButton extends StatelessWidget {
 
   Route _createRoute() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          const Profile(), // Halaman yang ingin Anda tampilkan
+      pageBuilder: (context, animation, secondaryAnimation) => const Profile(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, .0);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+}
+class Donebutton extends StatelessWidget {
+  const Donebutton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          _createRoute(),
+        );
+      },
+      child: Container(
+        height: 50,
+        width: 200,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30.0),
+          border: Border.all(
+            color: Colors.blue,
+            width: 2.0,
+          ),
+        ),
+        child: const Center(
+          child: Text(
+            'DONE',
+            style: TextStyle(
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+              letterSpacing: 1,
+              color: Colors.blue,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const Profile(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, .0);
         const end = Offset.zero;

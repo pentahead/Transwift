@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'instagram_body.dart';
+import 'homepage_body.dart';
 
-class InstagramHomePage extends StatelessWidget {
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: InstagramBody(),
+      body: const HomepageBody(),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home),
               onPressed: () {},
               color: Colors.black,
             ),
             IconButton(
-              icon: Icon(Icons.map_outlined),
+              icon: const Icon(Icons.map_outlined),
               onPressed: () {},
               color: Colors.black,
             ),
             IconButton(
-              icon: Icon(Icons.account_circle),
+              icon: const Icon(Icons.account_circle),
               onPressed: () {},
               color: Colors.black,
             ),

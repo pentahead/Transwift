@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:transwift/provider/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -11,16 +15,19 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   late AnimationController _textAnimationController;
   late Animation<double> _textAnimationOpacity;
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     _logoAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
 
     _logoAnimationOffset = Tween<Offset>(
-      begin: Offset(0, -2.0),
+      begin: const Offset(0, -2.0),
       end: Offset.zero,
     ).animate(
       CurvedAnimation(
@@ -31,7 +38,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
     _textAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
 
     _textAnimationOpacity = Tween<double>(
@@ -52,11 +59,15 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   void dispose() {
     _logoAnimationController.dispose();
     _textAnimationController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -64,19 +75,19 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Spacer(), // Tambahkan Spacer di atas logo
+              const Spacer(),
               SlideTransition(
                 position: _logoAnimationOffset,
                 child: Image.asset(
-                  'assets/images/login_logo.png', // Ganti dengan path gambar Anda
-                  width: 250, // Sesuaikan lebar gambar
-                  height: 250, // Sesuaikan tinggi gambar
+                  'assets/images/login_logo.png',
+                  width: 150,
+                  height: 150,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 10),
               FadeTransition(
                 opacity: _textAnimationOpacity,
-                child: Text(
+                child: const Text(
                   'Login',
                   style: TextStyle(
                     color: Colors.black,
@@ -85,110 +96,104 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 10),
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: 'Username',
-                  prefixIcon: Icon(Icons.person,
-                      color: Colors.blue), // Mengatur warna ikon
+                  labelText: 'Email',
+                  prefixIcon: const Icon(Icons.person, color: Colors.blue),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 10),
               TextFormField(
                 obscureText: true,
+                controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock,
-                      color: Colors.blue), // Mengatur warna ikon
+                  prefixIcon: const Icon(Icons.lock, color: Colors.blue),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: () async {
+                  if (_emailController.text.isEmpty ||
+                      _passwordController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please fill in all fields'),
+                      ),
+                    );
+                    return;
+                  }
+
+                  bool success = await authProvider.signIn(
+                    context,
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+
+                  if (success) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Invalid email or password'),
+                      ),
+                    );
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),
+                  minimumSize: WidgetStateProperty.all<Size>(
+                    const Size(double.infinity, 50),
+                  ),
+                ),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              const SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () {
-                      // Tindakan yang akan diambil saat tombol Forget Password ditekan
+                      Navigator.pushNamed(context, '/signup');
                     },
-                    child: Text(
-                      'Forget Password?',
-                      style: TextStyle(
-                          color: Colors.grey.withOpacity(
-                              0.7)), // Mengatur warna teks dengan opasitas
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(color: Colors.blue),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.blue), // Mengatur warna tombol
-                  minimumSize: MaterialStateProperty.all<Size>(
-                      Size(double.infinity, 50)), // Mengatur lebar tombol
-                ),
-                child: Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white), // Mengatur warna teks
-                ),
-              ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Or automatically join with'),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 10),
-                  Icon(Icons.facebook,
-                      size: 30,
-                      color:
-                          Color(0xFF285094)), // Ganti dengan ikon Facebook Anda
-                  SizedBox(width: 20),
-                  Icon(Icons.g_mobiledata,
-                      size: 30,
-                      color:
-                          Color(0xFF285094)), // Ganti dengan ikon Google Anda
-                  SizedBox(width: 10),
-                ],
-              ),
-              Spacer(), // Tambahkan Spacer di bawah tombol Login
+              const Spacer(),
             ],
           ),
         ),
