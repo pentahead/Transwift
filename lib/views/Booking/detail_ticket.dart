@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/views/Booking/assets/jadwal.dart';
 import 'package:transwift/views/Booking/assets/button.dart';
-import 'package:transwift/assets/NavBar.dart';
 
 class DetailTicket extends StatelessWidget {
   const DetailTicket({super.key});
@@ -118,9 +117,6 @@ class DetailTicket extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: const NavBar(
-        selectedIndex: 1,
       ),
     );
   }

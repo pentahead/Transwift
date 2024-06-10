@@ -4,7 +4,6 @@ import 'package:transwift/views/Booking/assets/Button.dart';
 import 'package:transwift/views/Booking/assets/date_pick.dart';
 import 'package:transwift/views/Booking/assets/dropdown.dart';
 import 'package:transwift/views/Booking/assets/input.dart';
-import 'package:transwift/assets/NavBar.dart';
 
 class Booking extends StatelessWidget {
   const Booking({super.key});
@@ -116,9 +115,6 @@ class Booking extends StatelessWidget {
             )
           ],
         ),
-      ),
-      bottomNavigationBar: const NavBar(
-        selectedIndex: 1,
       ),
     );
   }

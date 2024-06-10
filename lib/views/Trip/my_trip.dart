@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/views/Trip/assets/radio_button.dart';
 import 'package:transwift/views/trip/map_trip.dart';
-import 'package:transwift/assets/NavBar.dart';
 
 class MyTrip extends StatelessWidget {
   const MyTrip({super.key});
@@ -42,8 +41,7 @@ class MyTrip extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
-                      padding:
-                          EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                      padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
                       child: Text(
                         "Destination",
                         style: TextStyle(
@@ -59,8 +57,7 @@ class MyTrip extends StatelessWidget {
                         decoration: InputDecoration(
                           hintText: 'Search Destination here',
                           prefixIcon: Icon(
-                            Icons
-                                .search, // Ganti dengan ikon yang Anda inginkan
+                            Icons.search,
                             color: Colors.blue,
                           ),
                           contentPadding: EdgeInsets.symmetric(
@@ -88,7 +85,7 @@ class MyTrip extends StatelessWidget {
                     ),
                     Center(
                       child: GestureDetector(
-                        onTap: () => Navigator.push(
+                        onTap: () => Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => const Map()),
                         ),
@@ -96,12 +93,11 @@ class MyTrip extends StatelessWidget {
                           height: 50,
                           width: 200,
                           decoration: BoxDecoration(
-                            color: Colors.blue, // Set background color to white
-                            borderRadius: BorderRadius.circular(
-                                30.0), // Set rounded corners
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(30.0),
                             border: Border.all(
-                              color: Colors.blue, // Set border color to blue
-                              width: 2.0, // Set border width
+                              color: Colors.blue,
+                              width: 2.0,
                             ),
                           ),
                           child: const Center(
@@ -114,8 +110,7 @@ class MyTrip extends StatelessWidget {
                                   letterSpacing: 1,
                                   color: Colors.white),
                             ),
-                          ), // Add your content inside the container
-                          // Add padding around the content
+                          ),
                         ),
                       ),
                     ),
@@ -125,9 +120,6 @@ class MyTrip extends StatelessWidget {
             )
           ],
         ),
-      ),
-      bottomNavigationBar: const NavBar(
-        selectedIndex: 1,
       ),
     );
   }

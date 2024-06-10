@@ -133,9 +133,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      WidgetStateProperty.all<Color>(Colors.blue),
-                  minimumSize: WidgetStateProperty.all<Size>(
-                      const Size(double.infinity, 50)),
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  minimumSize: MaterialStateProperty.all<Size>(
+                    const Size(double.infinity, 50),
+                  ),
                 ),
                 child: const Text(
                   'Login',
