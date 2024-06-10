@@ -137,7 +137,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Warna latar belakang tombol
+                  backgroundColor: Colors.blue, 
                 ),
               ),
               const SizedBox(height: 20),
@@ -147,7 +147,7 @@ class SignUpPage extends StatelessWidget {
                   const Text('Already have an account?'),
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context); // Go back to login page
+                      Navigator.pop(context); 
                     },
                     child: const Text(
                       'Login',
@@ -169,23 +169,23 @@ class SignUpPage extends StatelessWidget {
                 children: [
                   ElevatedButton.icon(
                     onPressed: () {
-                      // Handle sign up with Google
+                      
                     },
                     icon: const Icon(Icons.login),
                     label: const Text('Google'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red, // Background color
+                      backgroundColor: Colors.red, 
                     ),
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () {
-                      // Handle sign up with Facebook
+                     
                     },
                     icon: const Icon(Icons.login),
                     label: const Text('Facebook'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // Background color
+                      backgroundColor: Colors.blue, 
                     ),
                   ),
                 ],
