@@ -4,7 +4,6 @@ class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -67,13 +66,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Spacer(), // Tambahkan Spacer di atas logo
+              const Spacer(),
               SlideTransition(
                 position: _logoAnimationOffset,
                 child: Image.asset(
                   'assets/images/login_logo.png', // Ganti dengan path gambar Anda
-                  width: 250, // Sesuaikan lebar gambar
-                  height: 250, // Sesuaikan tinggi gambar
+                  width: 250,
+                  height: 250,
                 ),
               ),
               const SizedBox(height: 20),
@@ -92,22 +91,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Username',
-                  prefixIcon: const Icon(Icons.person,
-                      color: Colors.blue), // Mengatur warna ikon
+                  prefixIcon: const Icon(Icons.person, color: Colors.blue),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
@@ -116,22 +111,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: const Icon(Icons.lock,
-                      color: Colors.blue), // Mengatur warna ikon
+                  prefixIcon: const Icon(Icons.lock, color: Colors.blue),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius:
-                        BorderRadius.circular(10.0), // Mengatur sudut bulat
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
@@ -146,8 +137,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                     child: Text(
                       'Forget Password?',
                       style: TextStyle(
-                          color: Colors.grey.withOpacity(
-                              0.7)), // Mengatur warna teks dengan opasitas
+                        color: Colors.grey.withOpacity(0.7),
+                      ),
                     ),
                   ),
                 ],
@@ -158,14 +149,14 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   Navigator.pushReplacementNamed(context, '/home');
                 },
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(
-                      Colors.blue), // Mengatur warna tombol
-                  minimumSize: WidgetStateProperty.all<Size>(
-                      const Size(double.infinity, 50)), // Mengatur lebar tombol
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  minimumSize: MaterialStateProperty.all<Size>(
+                      const Size(double.infinity, 50)),
                 ),
                 child: const Text(
                   'Login',
-                  style: TextStyle(color: Colors.white), // Mengatur warna teks
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
               const SizedBox(height: 10),
@@ -179,19 +170,29 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 10),
-                  Icon(Icons.facebook,
-                      size: 30,
-                      color:
-                          Color(0xFF285094)), // Ganti dengan ikon Facebook Anda
+                  Icon(Icons.facebook, size: 30, color: Color(0xFF285094)),
                   SizedBox(width: 20),
-                  Icon(Icons.g_mobiledata,
-                      size: 30,
-                      color:
-                          Color(0xFF285094)), // Ganti dengan ikon Google Anda
+                  Icon(Icons.g_mobiledata, size: 30, color: Color(0xFF285094)),
                   SizedBox(width: 10),
                 ],
               ),
-              const Spacer(), // Tambahkan Spacer di bawah tombol Login
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Don\'t have an account?'),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
             ],
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transwift/homepage_body.dart';
 import 'package:transwift/lc.dart';
 import 'login_page.dart';
+import 'signup_page.dart';
 import 'package:transwift/views/Profile/profile.dart';
 import 'package:transwift/views/Trip/my_trip.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,14 +21,13 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
       title: 'Trans Swift',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginPage(),
+        '/signup': (context) => const SignUpPage(),
         '/home': (context) => const HomepageBody(),
         '/map': (context) => const MyTrip(),
         '/profile': (context) => const Profile(),
