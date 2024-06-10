@@ -100,8 +100,8 @@ class Map extends StatelessWidget {
                           vertical: 12), // Adjust padding as needed
                       textStyle: const TextStyle(
                           fontSize: 16,
-                          color: Color.fromARGB(
-                              255, 255, 255, 255)), // Black text
+                          color:
+                              Color.fromARGB(255, 255, 255, 255)), // Black text
                       minimumSize: const Size(150, 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0),

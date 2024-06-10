@@ -80,11 +80,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 position: _logoAnimationOffset,
                 child: Image.asset(
                   'assets/images/login_logo.png',
-                  width: 250,
-                  height: 250,
+                  width: 150,
+                  height: 150,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               FadeTransition(
                 opacity: _textAnimationOpacity,
                 child: const Text(
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               TextFormField(
                 obscureText: true,
                 controller: _passwordController,
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               ElevatedButton(
                 onPressed: () async {
                   if (_emailController.text.isEmpty ||

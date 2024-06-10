@@ -1,8 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="transwift"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/transswift">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

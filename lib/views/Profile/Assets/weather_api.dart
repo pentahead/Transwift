@@ -50,7 +50,7 @@ class _HomePageState extends State<weather> {
     return Center(
       child: Container(
         width: MediaQuery.sizeOf(context).width * 0.8,
-        height: MediaQuery.sizeOf(context).height * 0.48,
+        height: MediaQuery.sizeOf(context).height * 0.5,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(width: 2, color: Colors.blue)),

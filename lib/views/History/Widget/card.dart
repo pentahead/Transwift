@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/views/trip/map_trip.dart';
+import 'package:transwift/views/Trip/my_trip.dart';
 
 // ignore: camel_case_types
 class CardHistory extends StatelessWidget {
@@ -23,8 +23,8 @@ class CardHistory extends StatelessWidget {
                   0.3), // Adjust opacity for desired shadow intensity
               spreadRadius: 5.0, // Adjust spreadRadius for shadow diffusion
               blurRadius: 7.0, // Adjust blurRadius for shadow softness
-              offset:
-                  const Offset(0.0, 4.0), // Adjust offset for shadow position (x, y)
+              offset: const Offset(
+                  0.0, 4.0), // Adjust offset for shadow position (x, y)
             ),
           ],
         ),
@@ -87,7 +87,7 @@ class CardHistory extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Map()),
+                    MaterialPageRoute(builder: (context) => const MyTrip()),
                   );
                 },
                 child: Container(

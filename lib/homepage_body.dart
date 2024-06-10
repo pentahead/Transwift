@@ -7,6 +7,7 @@ import 'package:transwift/views/Trip/my_trip.dart';
 import 'package:transwift/views/Booking/booking.dart';
 import 'package:transwift/views/Profile/profile.dart';
 import 'package:transwift/provider/user_provider.dart';
+import 'package:transwift/views/rekomendasi/rekomendasi.dart';
 
 class HomepageBody extends StatelessWidget {
   const HomepageBody({super.key});
@@ -181,7 +182,12 @@ class HomepageBody extends StatelessWidget {
                                   ),
                                   ElevatedButton(
                                     onPressed: () {
-                                      // Implement the function for Recommendations
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Rekomendasi(),
+                                          ));
                                     },
                                     child: const Column(
                                       mainAxisSize: MainAxisSize.min,
