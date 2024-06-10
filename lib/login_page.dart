@@ -126,23 +126,6 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      // Tindakan yang akan diambil saat tombol Forget Password ditekan
-                    },
-                    child: Text(
-                      'Forget Password?',
-                      style: TextStyle(
-                        color: Colors.grey.withOpacity(0.7),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
@@ -150,31 +133,14 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
-                  minimumSize: MaterialStateProperty.all<Size>(
+                      WidgetStateProperty.all<Color>(Colors.blue),
+                  minimumSize: WidgetStateProperty.all<Size>(
                       const Size(double.infinity, 50)),
                 ),
                 child: const Text(
                   'Login',
                   style: TextStyle(color: Colors.white),
                 ),
-              ),
-              const SizedBox(height: 10),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Or automatically join with'),
-                ],
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 10),
-                  Icon(Icons.facebook, size: 30, color: Color(0xFF285094)),
-                  SizedBox(width: 20),
-                  Icon(Icons.g_mobiledata, size: 30, color: Color(0xFF285094)),
-                  SizedBox(width: 10),
-                ],
               ),
               const SizedBox(height: 20),
               Row(

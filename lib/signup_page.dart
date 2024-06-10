@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:transwift/provider/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    TextEditingController fullnameController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign Up'),
@@ -31,8 +40,9 @@ class SignUpPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               TextFormField(
+                controller: fullnameController,
                 decoration: InputDecoration(
-                  labelText: 'First Name',
+                  labelText: 'Full Name',
                   prefixIcon: const Icon(Icons.person, color: Colors.blue),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
@@ -50,25 +60,7 @@ class SignUpPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Last Name',
-                  prefixIcon: const Icon(Icons.person, color: Colors.blue),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
+                controller: phoneController,
                 decoration: InputDecoration(
                   labelText: 'No Telp',
                   prefixIcon: const Icon(Icons.person, color: Colors.blue),
@@ -88,6 +80,7 @@ class SignUpPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   prefixIcon: const Icon(Icons.person, color: Colors.blue),
@@ -108,6 +101,7 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 10),
               TextFormField(
                 obscureText: true,
+                controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   prefixIcon: const Icon(Icons.lock, color: Colors.blue),
@@ -128,16 +122,22 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                 
+                  authProvider.signUpWithEmailAndPassword(
+                    fullName: fullnameController.text,
+                    phoneNumber: phoneController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                  );
+                  Navigator.pushReplacementNamed(context, '/');
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
                 child: const Text(
                   'Sign Up',
                   style: TextStyle(
-                    color: Colors.white, 
+                    color: Colors.white,
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, 
                 ),
               ),
               const SizedBox(height: 20),
@@ -147,7 +147,7 @@ class SignUpPage extends StatelessWidget {
                   const Text('Already have an account?'),
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context); 
+                      Navigator.pop(context);
                     },
                     child: const Text(
                       'Login',
@@ -159,37 +159,6 @@ class SignUpPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const Text(
-                'Or sign up with',
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      
-                    },
-                    icon: const Icon(Icons.login),
-                    label: const Text('Google'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red, 
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                     
-                    },
-                    icon: const Icon(Icons.login),
-                    label: const Text('Facebook'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, 
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         ),

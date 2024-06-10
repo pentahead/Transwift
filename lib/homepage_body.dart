@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transwift/assets/NavBar.dart';
 import 'package:transwift/views/Profile/Assets/weather_api.dart';
 import 'package:transwift/views/Trip/my_trip.dart';
 import 'package:transwift/views/Booking/booking.dart';
@@ -214,9 +215,13 @@ class HomepageBody extends StatelessWidget {
                   ),
                 ),
               ),
+              
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: const NavBar(
+        selectedIndex: 0,
       ),
     );
   }
