@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:transwift/provider/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,6 +14,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   late Animation<Offset> _logoAnimationOffset;
   late AnimationController _textAnimationController;
   late Animation<double> _textAnimationOpacity;
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -54,11 +59,15 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   void dispose() {
     _logoAnimationController.dispose();
     _textAnimationController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -70,7 +79,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               SlideTransition(
                 position: _logoAnimationOffset,
                 child: Image.asset(
-                  'assets/images/login_logo.png', // Ganti dengan path gambar Anda
+                  'assets/images/login_logo.png',
                   width: 250,
                   height: 250,
                 ),
@@ -89,8 +98,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               ),
               const SizedBox(height: 20),
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Email',
                   prefixIcon: const Icon(Icons.person, color: Colors.blue),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
@@ -109,6 +119,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               const SizedBox(height: 20),
               TextFormField(
                 obscureText: true,
+                controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   prefixIcon: const Icon(Icons.lock, color: Colors.blue),
@@ -128,13 +139,36 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
+                onPressed: () async {
+                  if (_emailController.text.isEmpty ||
+                      _passwordController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please fill in all fields'),
+                      ),
+                    );
+                    return;
+                  }
+
+                  bool success = await authProvider.signIn(
+                    context,
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+
+                  if (success) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Invalid email or password'),
+                      ),
+                    );
+                  }
                 },
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
-                  minimumSize: MaterialStateProperty.all<Size>(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),
+                  minimumSize: WidgetStateProperty.all<Size>(
                     const Size(double.infinity, 50),
                   ),
                 ),

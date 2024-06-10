@@ -56,31 +56,6 @@ class Profile extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(20),
-                          child: Container(
-                            width: 1000,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                  10.0), // Adjust corner radius as needed
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(
-                                      0.5), // Adjust shadow color as needed
-                                  blurRadius:
-                                      5.0, // Adjust blur radius as needed
-                                  spreadRadius:
-                                      0.0, // Adjust spread radius as needed, 0 for no outward spread
-                                  offset: const Offset(0.0,
-                                      5.0), // Adjust shadow offset for bottom emphasis
-                                ),
-                              ],
-                            ),
-                            child: const Saldo(),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20),
                           child: GestureDetector(
                             onTap: () => Navigator.push(
                               context,
@@ -94,16 +69,14 @@ class Profile extends StatelessWidget {
                                     bottom: BorderSide(
                                       color: Colors
                                           .black, // Change underline color
-                                      width:
-                                          2.0, // Change underline thickness
+                                      width: 2.0, // Change underline thickness
                                     ),
                                   ),
                                 ),
                                 child: const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.perm_identity_rounded,
@@ -138,16 +111,14 @@ class Profile extends StatelessWidget {
                                     bottom: BorderSide(
                                       color: Colors
                                           .black, // Change underline color
-                                      width:
-                                          2.0, // Change underline thickness
+                                      width: 2.0, // Change underline thickness
                                     ),
                                   ),
                                 ),
                                 child: const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.support_agent,
@@ -172,8 +143,7 @@ class Profile extends StatelessWidget {
                         ),
                         const Center(
                             child: Padding(
-                          padding: EdgeInsets.only(
-                              top: 0, left: 40, right: 40),
+                          padding: EdgeInsets.only(top: 0, left: 40, right: 40),
                           child: Logout(),
                         ))
                       ],

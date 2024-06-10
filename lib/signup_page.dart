@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/provider/auth_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:transwift/provider/auth_provider.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -63,7 +63,7 @@ class SignUpPage extends StatelessWidget {
                 controller: phoneController,
                 decoration: InputDecoration(
                   labelText: 'No Telp',
-                  prefixIcon: const Icon(Icons.person, color: Colors.blue),
+                  prefixIcon: const Icon(Icons.phone, color: Colors.blue),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
                     borderRadius: BorderRadius.circular(10.0),
@@ -83,7 +83,7 @@ class SignUpPage extends StatelessWidget {
                 controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  prefixIcon: const Icon(Icons.person, color: Colors.blue),
+                  prefixIcon: const Icon(Icons.email, color: Colors.blue),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.blue),
                     borderRadius: BorderRadius.circular(10.0),
@@ -121,14 +121,36 @@ class SignUpPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  authProvider.signUpWithEmailAndPassword(
-                    fullName: fullnameController.text,
-                    phoneNumber: phoneController.text,
-                    email: emailController.text,
-                    password: passwordController.text,
+                onPressed: () async {
+                  if (fullnameController.text.isEmpty ||
+                      phoneController.text.isEmpty ||
+                      emailController.text.isEmpty ||
+                      passwordController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please fill in all fields'),
+                      ),
+                    );
+                    return;
+                  }
+
+                  bool success = await authProvider.signUp(
+                    context,
+                    emailController.text,
+                    passwordController.text,
+                    fullnameController.text,
+                    phoneController.text,
                   );
-                  Navigator.pushReplacementNamed(context, '/');
+
+                  if (success) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Sign up failed'),
+                      ),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

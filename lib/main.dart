@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:transwift/homepage_body.dart';
 import 'package:transwift/lc.dart';
 import 'package:transwift/provider/auth_provider.dart';
+import 'package:transwift/provider/user_provider.dart';
 import 'login_page.dart';
 import 'signup_page.dart';
 import 'package:transwift/views/Profile/profile.dart';
@@ -24,6 +25,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: const MyApp(),
     ),

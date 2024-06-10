@@ -14,7 +14,7 @@ class AuthRepo {
       final userRef = _firestore.collection('users').doc(creds.user!.uid);
       await userRef.set({
         'email': email,
-        'name': name,
+        'fullName': name,
         'phoneNumber': phoneNumber,
       });
 

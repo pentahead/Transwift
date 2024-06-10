@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:transwift/views/History/History.dart';
-import 'package:transwift/views/Profile/account.dart';
 import 'package:transwift/homepage_body.dart';
+import 'package:transwift/views/Profile/profile.dart';
+import 'package:transwift/views/Trip/my_trip.dart';
 
 class NavBar extends StatefulWidget {
   final int selectedIndex;
@@ -56,10 +56,10 @@ class _NavBarState extends State<NavBar> {
             .pushReplacement(_createRoute(const HomepageBody()));
         break;
       case 1:
-        Navigator.of(context).pushReplacement(_createRoute(const History()));
+        Navigator.of(context).pushReplacement(_createRoute(const MyTrip()));
         break;
       case 2:
-        Navigator.of(context).pushReplacement(_createRoute(const Account()));
+        Navigator.of(context).pushReplacement(_createRoute(const Profile()));
         break;
     }
   }

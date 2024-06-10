@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transwift/assets/NavBar.dart';
 import 'package:transwift/views/Trip/assets/radio_button.dart';
 import 'package:transwift/views/trip/map_trip.dart';
 
@@ -121,6 +122,9 @@ class MyTrip extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const NavBar(
+          selectedIndex: 1,
+        )
     );
   }
 }
