@@ -17,31 +17,35 @@ class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      height: 50,
+      height: 80,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () => _onItemTapped(0),
-            color: widget.selectedIndex == 0 ? Colors.blue : Colors.black,
-            iconSize: widget.selectedIndex == 0 ? 30 : 30,
-          ),
-          IconButton(
-            icon: const Icon(Icons.map_outlined),
-            onPressed: () => _onItemTapped(1),
-            color: widget.selectedIndex == 1 ? Colors.blue : Colors.black,
-            iconSize: widget.selectedIndex == 1 ? 30 : 30,
-          ),
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () => _onItemTapped(2),
-            color: widget.selectedIndex == 2 ? Colors.blue : Colors.black,
-            iconSize: widget.selectedIndex == 2 ? 30 : 30,
-          ),
+          _buildIconButton(Icons.home, 0),
+          _buildIconButton(Icons.map_outlined, 1),
+          _buildIconButton(Icons.account_circle, 2),
         ],
+      ),
+    );
+  }
+
+  Widget _buildIconButton(IconData icon, int index) {
+    return AnimatedPadding(
+      padding: EdgeInsets.only(top: _selectedIndex == index ? 0.0 : 10.0),
+      duration: const Duration(milliseconds: 200),
+      child: IconButton(
+        icon: Icon(icon),
+        onPressed: () => _onItemTapped(index),
+        color: _selectedIndex == index ? Colors.blue : Colors.black,
+        iconSize: 30,
       ),
     );
   }
