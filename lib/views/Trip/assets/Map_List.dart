@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class List extends StatefulWidget {
-  const List({super.key});
+class MapList extends StatefulWidget {
+  const MapList({super.key});
 
   @override
-  State<List> createState() => _List();
+  State<MapList> createState() => _MapList();
 }
 
-class _List extends State<List> {
+class _MapList extends State<MapList> {
   int _value = 0;
 
   @override
