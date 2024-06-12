@@ -9,8 +9,10 @@ import 'package:transwift/views/trip/assets/Map_List.dart';
 
 class RouteMap extends StatefulWidget {
   final String destination; // Add destination parameter
+  final String routeOption; // Add route option parameter
 
-  const RouteMap({super.key, required this.destination});
+  const RouteMap(
+      {super.key, required this.destination, required this.routeOption});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -20,37 +22,46 @@ class RouteMap extends StatefulWidget {
 class _RouteMapState extends State<RouteMap> {
   late GoogleMapController mapController;
   LatLng? _jember;
-  LatLng? _destination;
+  LatLng? _destination; // Change to nullable
   final Set<Polyline> _polylines = {};
   bool _isLoading = true;
+  String _errorMessage = '';
 
   @override
   void initState() {
     super.initState();
     _requestLocationPermission();
-    _searchDestination(widget.destination);
+    _searchDestination(
+        widget.destination); // Search for destination coordinates
   }
 
   Future<void> _searchDestination(String destination) async {
-    const String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
+    final String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
     final String url =
         'https://maps.googleapis.com/maps/api/geocode/json?address=$destination&key=$apiKey';
 
-    final response = await http.get(Uri.parse(url));
+    try {
+      final response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      if (data['results'].isNotEmpty) {
-        final location = data['results'][0]['geometry']['location'];
-        setState(() {
-          _destination = LatLng(location['lat'], location['lng']);
-        });
-        _getRoute();
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        if (data['results'].isNotEmpty) {
+          final location = data['results'][0]['geometry']['location'];
+          setState(() {
+            _destination = LatLng(location['lat'], location['lng']);
+          });
+          _getRoute();
+        } else {
+          throw Exception('No results found for the given destination');
+        }
       } else {
         throw Exception('Failed to load destination');
       }
-    } else {
-      throw Exception('Failed to load destination');
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
     }
   }
 
@@ -62,6 +73,7 @@ class _RouteMapState extends State<RouteMap> {
     } else {
       setState(() {
         _isLoading = false;
+        _errorMessage = 'Location permission denied';
       });
     }
   }
@@ -106,17 +118,34 @@ class _RouteMapState extends State<RouteMap> {
         '${_destination!.latitude},${_destination!.longitude}';
     const String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
 
+    final Map<String, String> modeMap = {
+      'Best Route': 'driving',
+      'Fewer Transfer': 'transit',
+      'Less Walking': 'walking',
+      'Wheelchair Accessible': 'wheelchair',
+    };
+
+    final String mode = modeMap[widget.routeOption] ?? 'driving';
+
     final String url =
-        '$baseUrl?origin=$origin&destination=$destination&key=$apiKey';
+        '$baseUrl?origin=$origin&destination=$destination&mode=$mode&key=$apiKey';
 
-    final response = await http.get(Uri.parse(url));
+    try {
+      final response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      final String polyline = data['routes'][0]['overview_polyline']['points'];
-      _addPolyline(polyline);
-    } else {
-      throw Exception('Failed to load directions');
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        final String polyline =
+            data['routes'][0]['overview_polyline']['points'];
+        _addPolyline(polyline);
+      } else {
+        throw Exception('Failed to load directions');
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
     }
   }
 
@@ -182,30 +211,34 @@ class _RouteMapState extends State<RouteMap> {
               height: 350,
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : _jember != null && _destination != null
-                      ? GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                            target: _jember!,
-                            zoom: 10.0,
-                          ),
-                          onMapCreated: (GoogleMapController controller) {
-                            mapController = controller;
-                          },
-                          polylines: _polylines,
-                          markers: {
-                            Marker(
-                              markerId: const MarkerId('jember'),
-                              position: _jember!,
-                              infoWindow: const InfoWindow(title: 'Jember'),
-                            ),
-                            Marker(
-                              markerId: const MarkerId('destination'),
-                              position: _destination!,
-                              infoWindow: InfoWindow(title: widget.destination),
-                            ),
-                          },
-                        )
-                      : Container(), // Empty container when location is null
+                  : _errorMessage.isNotEmpty
+                      ? Center(
+                          child: Text(_errorMessage)) // Display error message
+                      : _jember != null && _destination != null
+                          ? GoogleMap(
+                              initialCameraPosition: CameraPosition(
+                                target: _jember!,
+                                zoom: 10.0,
+                              ),
+                              onMapCreated: (GoogleMapController controller) {
+                                mapController = controller;
+                              },
+                              polylines: _polylines,
+                              markers: {
+                                Marker(
+                                  markerId: const MarkerId('jember'),
+                                  position: _jember!,
+                                  infoWindow: const InfoWindow(title: 'Jember'),
+                                ),
+                                Marker(
+                                  markerId: const MarkerId('destination'),
+                                  position: _destination!,
+                                  infoWindow:
+                                      InfoWindow(title: widget.destination),
+                                ),
+                              },
+                            )
+                          : Container(), // Empty container when location is null
             ),
           ),
           Positioned(

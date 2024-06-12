@@ -10,6 +10,8 @@ class MyTrip extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController destinationController =
         TextEditingController(); // Controller for destination input
+    final ValueNotifier<String> selectedRouteOption =
+        ValueNotifier<String>(''); // Controller for selected route option
 
     return Scaffold(
       backgroundColor: Colors.blue,
@@ -81,9 +83,12 @@ class MyTrip extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: RadioButtons(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: RadioButtons(
+                        selectedOptionNotifier:
+                            selectedRouteOption, // Pass the ValueNotifier
+                      ),
                     ),
                     const SizedBox(
                       height: 175,
@@ -94,7 +99,9 @@ class MyTrip extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => RouteMap(
-                                destination: destinationController.text),
+                              destination: destinationController.text,
+                              routeOption: selectedRouteOption.value,
+                            ),
                           ),
                         ),
                         child: Container(
