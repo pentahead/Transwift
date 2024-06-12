@@ -57,26 +57,24 @@ class _NavBarState extends State<NavBar> {
     switch (index) {
       case 0:
         Navigator.of(context)
-            .pushReplacement(_createRoute(const HomepageBody()));
+            .pushReplacement(_createNoTransitionRoute(const HomepageBody()));
         break;
       case 1:
-        Navigator.of(context).pushReplacement(_createRoute(const MyTrip()));
+        Navigator.of(context)
+            .pushReplacement(_createNoTransitionRoute(const MyTrip()));
         break;
       case 2:
-        Navigator.of(context).pushReplacement(_createRoute(const Profile()));
+        Navigator.of(context)
+            .pushReplacement(_createNoTransitionRoute(const Profile()));
         break;
     }
   }
 
-  Route _createRoute(Widget page) {
+  Route _createNoTransitionRoute(Widget page) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        return FadeTransition(
-          opacity: animation,
-          child: child,
-        );
-      },
+      transitionDuration: Duration.zero,
+      reverseTransitionDuration: Duration.zero,
     );
   }
 }
