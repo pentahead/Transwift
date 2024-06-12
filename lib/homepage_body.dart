@@ -21,9 +21,14 @@ class HomepageBody extends StatelessWidget {
     return FutureBuilder(
       future: userProvider.fetchUser(userId),
       builder: (context, snapshot) {
-        if (userProvider.name == 'guest') {
-          return const Center(child: CircularProgressIndicator());
-        }
+        // if (snapshot.connectionState == ConnectionState.waiting) {
+        //   return const Center(child: CircularProgressIndicator());
+        // }
+
+        // if (snapshot.hasError) {
+        //   return const Center(child: Text('An error occurred.'));
+        // }
+
         return Scaffold(
           body: SingleChildScrollView(
             child: Container(
@@ -60,159 +65,134 @@ class HomepageBody extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SingleChildScrollView(
-                    child: Container(
-                      width: double.infinity,
-                      height: screenHeight * 0.9,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                        ),
-                        color: Colors.white,
+                  Container(
+                    width: double.infinity,
+                    height: screenHeight * 1,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
                       ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 30),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                "Destination",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16,
-                                ),
-                              ),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 30),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            "Destination",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                              child: Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: Colors.blue),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
-                                      spreadRadius: 2,
-                                      blurRadius: 3,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(color: Colors.blue),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 2,
+                                  blurRadius: 3,
+                                  offset: const Offset(0, 2),
                                 ),
-                                child: const Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 10),
-                                      child: Icon(
-                                        Icons.search,
-                                        color: Colors.blue,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextField(
-                                        decoration: InputDecoration(
-                                          hintText: 'Search...',
-                                          border: InputBorder.none,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                              ],
+                            ),
+                            child: const Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Icon(
+                                    Icons.search,
+                                    color: Colors.blue,
+                                  ),
                                 ),
-                              ),
+                                Expanded(
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Search...',
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 20),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                'Services',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            'Services',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const MyTrip()),
-                                      );
-                                    },
-                                    child: const Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.directions_car),
-                                        Text('Start Trips'),
-                                      ],
+                                  Expanded(
+                                    child: _buildServiceButton(
+                                      context,
+                                      'Start Trips',
+                                      Icons.directions_car,
+                                      Colors.blue,
+                                      const MyTrip(),
                                     ),
                                   ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Booking()),
-                                      );
-                                    },
-                                    child: const Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(Icons.book_online),
-                                        Text('Booking'),
-                                      ],
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Rekomendasi(),
-                                          ));
-                                    },
-                                    child: const Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(Icons.star),
-                                        Text('Rekomendasi'),
-                                      ],
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: _buildServiceButton(
+                                      context,
+                                      'Booking',
+                                      Icons.book_online,
+                                      Colors.green,
+                                      const Booking(),
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                            const SizedBox(height: 20),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                'Informasi Cuaca',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                width: double.infinity,
+                                child: _buildServiceButton(
+                                  context,
+                                  'Rekomendasi',
+                                  Icons.star,
+                                  Colors.orange,
+                                  const Rekomendasi(),
+                                ),
                               ),
-                            ),
-                            const weather()
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 20),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            'Weather Information',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const weather(),
+                      ],
                     ),
                   ),
                 ],
@@ -224,6 +204,36 @@ class HomepageBody extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildServiceButton(BuildContext context, String text, IconData icon,
+      Color color, Widget page) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => page),
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color, // background color
+        foregroundColor: Colors.white, // text color
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 5,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(icon),
+          Text(text),
+        ],
+      ),
     );
   }
 }
