@@ -9,8 +9,8 @@ class Detail extends StatelessWidget {
     required this.imageUrl,
     required this.name,
     required this.description,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,8 @@ class Detail extends StatelessWidget {
             right: 0,
             child: Container(
               width: 200,
-              height: 80,
+              height: 100,
+              padding: const EdgeInsets.only(bottom: 15),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(50),
@@ -47,24 +48,22 @@ class Detail extends StatelessWidget {
                 ),
                 color: Colors.blue,
               ),
-              child: const Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.search, size: 40, color: Colors.white),
-                    SizedBox(width: 5),
-                    Text(
-                      "Papuma",
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Icon(Icons.search, size: 40, color: Colors.white),
+                  SizedBox(width: 5),
+                  Text(
+                    "Papuma",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

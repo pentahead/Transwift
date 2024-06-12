@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transwift/views/Profile/account.dart';
 import 'package:transwift/views/Profile/profile.dart';
 import 'package:transwift/views/Profile/account_edit.dart';
 
@@ -158,7 +159,7 @@ class Donebutton extends StatelessWidget {
 
   Route _createRoute() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const Profile(),
+      pageBuilder: (context, animation, secondaryAnimation) => const Account(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, .0);
         const end = Offset.zero;

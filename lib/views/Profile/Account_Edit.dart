@@ -30,7 +30,7 @@ class accountEdit extends StatelessWidget {
               child: Container(
                 height: double.infinity,
                 decoration: const BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
@@ -39,78 +39,75 @@ class accountEdit extends StatelessWidget {
               ),
             ),
             Positioned(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Text(
-                        "My Account",
-                        style: poppins_30_semi_white(),
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Text(
+                      "My Account",
+                      style: poppins_30_semi_white(),
                     ),
-                    const Center(
-                      child: CircleAvatar(
-                        radius: 60,
-                        backgroundImage:
-                            AssetImage('assets/images/profile.jpg'),
-                      ),
+                  ),
+                  const Center(
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage('assets/images/profile.jpg'),
                     ),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Nama",
-                            style: poppins_16_semi(),
-                          ),
-                          const SizedBox(height: 10),
-                          const Edit(
-                            label: "Nama",
-                            icon: Icons.person,
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            "Email",
-                            style: poppins_16_semi(),
-                          ),
-                          const SizedBox(height: 10),
-                          const Edit(
-                            label: "Email",
-                            icon: Icons.email,
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            "Phone Number",
-                            style: poppins_16_semi(),
-                          ),
-                          const SizedBox(height: 10),
-                          const Edit(
-                            label: "Phone Number",
-                            icon: Icons.phone,
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            "Alamat",
-                            style: poppins_16_semi(),
-                          ),
-                          const SizedBox(height: 10),
-                          const Edit(
-                            label: "Alamat",
-                            icon: Icons.location_on,
-                          ),
-                          const SizedBox(height: 30),
-                          const Center(
-                            child: Donebutton(),
-                          ),
-                        ],
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Nama",
+                          style: poppins_16_semi(),
+                        ),
+                        const SizedBox(height: 10),
+                        const Edit(
+                          label: "Nama",
+                          icon: Icons.person,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Email",
+                          style: poppins_16_semi(),
+                        ),
+                        const SizedBox(height: 10),
+                        const Edit(
+                          label: "Email",
+                          icon: Icons.email,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Phone Number",
+                          style: poppins_16_semi(),
+                        ),
+                        const SizedBox(height: 10),
+                        const Edit(
+                          label: "Phone Number",
+                          icon: Icons.phone,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Alamat",
+                          style: poppins_16_semi(),
+                        ),
+                        const SizedBox(height: 10),
+                        const Edit(
+                          label: "Alamat",
+                          icon: Icons.location_on,
+                        ),
+                        const SizedBox(height: 30),
+                        const Center(
+                          child: Donebutton(),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
