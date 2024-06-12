@@ -16,7 +16,7 @@ class Account extends StatelessWidget {
               right: 0,
               left: 0,
               child: Container(
-                height: 1000, // Adjusted height
+                height: 1000,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),

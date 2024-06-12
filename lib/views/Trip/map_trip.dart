@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:location/location.dart' as loc;
+import 'package:permission_handler/permission_handler.dart' as perm;
 import 'package:transwift/homepage_body.dart';
 import 'package:transwift/views/trip/assets/Map_List.dart';
 
@@ -9,27 +11,71 @@ class RouteMap extends StatefulWidget {
   const RouteMap({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RouteMapState createState() => _RouteMapState();
 }
 
 class _RouteMapState extends State<RouteMap> {
   late GoogleMapController mapController;
-  final LatLng _jember = const LatLng(-8.184485, 113.668076);
+  LatLng? _jember;
   final LatLng _papuma = const LatLng(-8.444506, 113.570511);
   final Set<Polyline> _polylines = {};
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _getRoute();
+    _requestLocationPermission();
+  }
+
+  Future<void> _requestLocationPermission() async {
+    var status = await perm.Permission.location.request();
+
+    if (status.isGranted) {
+      _getCurrentLocation();
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _getCurrentLocation() async {
+    loc.Location location = loc.Location();
+
+    bool serviceEnabled;
+    loc.PermissionStatus permissionGranted;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == loc.PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != loc.PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    final loc.LocationData locationData = await location.getLocation();
+
+    setState(() {
+      _jember = LatLng(locationData.latitude!, locationData.longitude!);
+      _getRoute();
+    });
   }
 
   Future<void> _getRoute() async {
-    final String baseUrl =
+    const String baseUrl =
         'https://maps.googleapis.com/maps/api/directions/json';
-    final String origin = '${_jember.latitude},${_jember.longitude}';
+    final String origin = '${_jember?.latitude},${_jember?.longitude}';
     final String destination = '${_papuma.latitude},${_papuma.longitude}';
-    final String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
+    const String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
 
     final String url =
         '$baseUrl?origin=$origin&destination=$destination&key=$apiKey';
@@ -53,12 +99,13 @@ class _RouteMapState extends State<RouteMap> {
     setState(() {
       _polylines.add(
         Polyline(
-          polylineId: PolylineId('route'),
+          polylineId: const PolylineId('route'),
           points: polylineCoordinates,
           color: Colors.blue,
           width: 5,
         ),
       );
+      _isLoading = false; // Set loading to false after polylines are added
     });
   }
 
@@ -101,31 +148,35 @@ class _RouteMapState extends State<RouteMap> {
             top: 40,
             right: 0,
             left: 0,
-            child: Container(
+            child: SizedBox(
               width: 430,
               height: 350,
-              child: GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: _jember,
-                  zoom: 10.0,
-                ),
-                onMapCreated: (GoogleMapController controller) {
-                  mapController = controller;
-                },
-                polylines: _polylines,
-                markers: {
-                  Marker(
-                    markerId: MarkerId('jember'),
-                    position: _jember,
-                    infoWindow: InfoWindow(title: 'Jember'),
-                  ),
-                  Marker(
-                    markerId: MarkerId('papuma'),
-                    position: _papuma,
-                    infoWindow: InfoWindow(title: 'Papuma'),
-                  ),
-                },
-              ),
+              child: _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : _jember != null
+                      ? GoogleMap(
+                          initialCameraPosition: CameraPosition(
+                            target: _jember!,
+                            zoom: 10.0,
+                          ),
+                          onMapCreated: (GoogleMapController controller) {
+                            mapController = controller;
+                          },
+                          polylines: _polylines,
+                          markers: {
+                            Marker(
+                              markerId: const MarkerId('jember'),
+                              position: _jember!,
+                              infoWindow: const InfoWindow(title: 'Jember'),
+                            ),
+                            Marker(
+                              markerId: const MarkerId('papuma'),
+                              position: _papuma,
+                              infoWindow: const InfoWindow(title: 'Papuma'),
+                            ),
+                          },
+                        )
+                      : Container(), // Empty container when location is null
             ),
           ),
           Positioned(
