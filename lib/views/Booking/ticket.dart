@@ -6,6 +6,7 @@ class Ticket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         color: Colors.blue,
@@ -16,13 +17,12 @@ class Ticket extends StatelessWidget {
               right: 0,
               left: 0,
               child: Container(
-                height: 1000, // Adjusted height
+                height: screenHeight * 0.9,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20), // No border on top right
-                      bottomLeft:
-                          Radius.circular(0), // No border on bottom left
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(0),
                       bottomRight: Radius.circular(0),
                     ),
                     color: Colors.white),
@@ -57,17 +57,16 @@ class Ticket extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: Text(
-                        "Daftar Tiket",
+                        "You can go there with : ",
                         style: poppins16bold(),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 50),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: SizedBox(
-                        height: 500, // Adjust height as needed
+                        height: screenHeight * 0.75,
                         child: ListView(
-                          scrollDirection: Axis.vertical, // Scroll vertically
+                          scrollDirection: Axis.vertical,
                           children: const [
                             CardList(),
                             CardList(),
