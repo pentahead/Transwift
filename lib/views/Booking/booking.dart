@@ -24,9 +24,8 @@ class Booking extends StatelessWidget {
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20), // No border on top right
-                      bottomLeft:
-                          Radius.circular(0), // No border on bottom left
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(0),
                       bottomRight: Radius.circular(0),
                     ),
                     color: Colors.white),

@@ -8,7 +8,9 @@ import 'package:transwift/homepage_body.dart';
 import 'package:transwift/views/trip/assets/Map_List.dart';
 
 class RouteMap extends StatefulWidget {
-  const RouteMap({super.key});
+  final String destination; // Add destination parameter
+
+  const RouteMap({super.key, required this.destination});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -18,7 +20,7 @@ class RouteMap extends StatefulWidget {
 class _RouteMapState extends State<RouteMap> {
   late GoogleMapController mapController;
   LatLng? _jember;
-  final LatLng _papuma = const LatLng(-8.444506, 113.570511);
+  LatLng? _destination;
   final Set<Polyline> _polylines = {};
   bool _isLoading = true;
 
@@ -26,6 +28,30 @@ class _RouteMapState extends State<RouteMap> {
   void initState() {
     super.initState();
     _requestLocationPermission();
+    _searchDestination(widget.destination);
+  }
+
+  Future<void> _searchDestination(String destination) async {
+    const String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
+    final String url =
+        'https://maps.googleapis.com/maps/api/geocode/json?address=$destination&key=$apiKey';
+
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      if (data['results'].isNotEmpty) {
+        final location = data['results'][0]['geometry']['location'];
+        setState(() {
+          _destination = LatLng(location['lat'], location['lng']);
+        });
+        _getRoute();
+      } else {
+        throw Exception('Failed to load destination');
+      }
+    } else {
+      throw Exception('Failed to load destination');
+    }
   }
 
   Future<void> _requestLocationPermission() async {
@@ -71,10 +97,13 @@ class _RouteMapState extends State<RouteMap> {
   }
 
   Future<void> _getRoute() async {
+    if (_jember == null || _destination == null) return;
+
     const String baseUrl =
         'https://maps.googleapis.com/maps/api/directions/json';
-    final String origin = '${_jember?.latitude},${_jember?.longitude}';
-    final String destination = '${_papuma.latitude},${_papuma.longitude}';
+    final String origin = '${_jember!.latitude},${_jember!.longitude}';
+    final String destination =
+        '${_destination!.latitude},${_destination!.longitude}';
     const String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
 
     final String url =
@@ -105,7 +134,7 @@ class _RouteMapState extends State<RouteMap> {
           width: 5,
         ),
       );
-      _isLoading = false; // Set loading to false after polylines are added
+      _isLoading = false;
     });
   }
 
@@ -153,7 +182,7 @@ class _RouteMapState extends State<RouteMap> {
               height: 350,
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : _jember != null
+                  : _jember != null && _destination != null
                       ? GoogleMap(
                           initialCameraPosition: CameraPosition(
                             target: _jember!,
@@ -170,9 +199,9 @@ class _RouteMapState extends State<RouteMap> {
                               infoWindow: const InfoWindow(title: 'Jember'),
                             ),
                             Marker(
-                              markerId: const MarkerId('papuma'),
-                              position: _papuma,
-                              infoWindow: const InfoWindow(title: 'Papuma'),
+                              markerId: const MarkerId('destination'),
+                              position: _destination!,
+                              infoWindow: InfoWindow(title: widget.destination),
                             ),
                           },
                         )
