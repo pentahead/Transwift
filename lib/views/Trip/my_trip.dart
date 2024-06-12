@@ -90,7 +90,7 @@ class MyTrip extends StatelessWidget {
                           onTap: () => Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Map()),
+                                builder: (context) => const RouteMap()),
                           ),
                           child: Container(
                             height: 50,
