@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:location/location.dart' as loc;
 import 'package:permission_handler/permission_handler.dart' as perm;
 import 'package:transwift/homepage_body.dart';
-import 'package:transwift/views/trip/assets/Map_List.dart';
+import 'package:transwift/views/Trip/assets/map_List.dart';
 
 class RouteMap extends StatefulWidget {
   final String destination; // Add destination parameter
@@ -208,7 +208,7 @@ class _RouteMapState extends State<RouteMap> {
             left: 0,
             child: SizedBox(
               width: 430,
-              height: 350,
+              height: 500,
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : _errorMessage.isNotEmpty
@@ -218,7 +218,7 @@ class _RouteMapState extends State<RouteMap> {
                           ? GoogleMap(
                               initialCameraPosition: CameraPosition(
                                 target: _jember!,
-                                zoom: 10.0,
+                                zoom: 12.0,
                               ),
                               onMapCreated: (GoogleMapController controller) {
                                 mapController = controller;
@@ -248,38 +248,35 @@ class _RouteMapState extends State<RouteMap> {
             child: Container(
               width: 200,
               height: 80,
+              padding: const EdgeInsets.only(bottom: 8),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(0),
-                  topRight: Radius.circular(0),
                   bottomLeft: Radius.circular(50),
                   bottomRight: Radius.circular(50),
                 ),
                 color: Colors.blue,
               ),
-              child: const Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.search, size: 40, color: Colors.white),
-                    SizedBox(width: 5),
-                    Text(
-                      " Nama Kota",
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Icon(Icons.search, size: 40, color: Colors.white),
+                  const SizedBox(width: 5),
+                  Text(
+                    widget.destination, // Display dynamic destination
+                    style: const TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
           Positioned(
-            top: 350,
+            top: 500,
             right: 0,
             left: 0,
             child: Container(
@@ -295,10 +292,15 @@ class _RouteMapState extends State<RouteMap> {
               ),
               child: Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: 430,
                     height: 300,
-                    child: MapList(), // Replace with your List widget
+                    child: _jember != null && _destination != null
+                        ? MapList(
+                            origin: _jember!,
+                            destination: _destination!,
+                          )
+                        : Container(), // Replace with your List widget
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
@@ -323,9 +325,9 @@ class _RouteMapState extends State<RouteMap> {
                         side: const BorderSide(color: Colors.blue, width: 2.0),
                       ),
                     ),
-                    child: const Text(
-                      'Done',
-                      style: TextStyle(
+                    child: Text(
+                      _jember != null ? _jember.toString() : 'Loading...',
+                      style: const TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 18,
                         fontWeight: FontWeight.w500,

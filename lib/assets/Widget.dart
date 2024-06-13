@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transwift/views/Profile/profile.dart';
-import 'package:transwift/views/Profile/account_edit.dart';
+import 'package:transwift/views/Profile/Account_edit.dart';
 
 class saldo extends StatelessWidget {
   const saldo({
@@ -128,7 +128,7 @@ class EditButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const accountEdit()),
+        MaterialPageRoute(builder: (context) => const AccountEdit()),
       ),
       child: Container(
         height: 50,

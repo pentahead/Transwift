@@ -40,7 +40,8 @@ class Account extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding:
+                            const EdgeInsets.only(left: 20, top: 50, bottom: 0),
                         child: Text(
                           "My Account",
                           style: poppins_30_semi_white(),
@@ -57,7 +58,7 @@ class Account extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             left: 30, right: 30, top: 20, bottom: 5),
                         child: Text(
-                          "Nama",
+                          "Name",
                           style: poppins_16_semi(),
                         ),
                       ),
@@ -86,7 +87,7 @@ class Account extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 30, right: 30, top: 20, bottom: 5),
+                            left: 30, right: 30, top: 10, bottom: 5),
                         child: Text(
                           "Email",
                           style: poppins_16_semi(),
@@ -150,7 +151,7 @@ class Account extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             left: 30, right: 30, top: 10, bottom: 10),
                         child: Text(
-                          "Alamat",
+                          "Address",
                           style: poppins_16_semi(),
                         ),
                       ),

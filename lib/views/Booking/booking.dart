@@ -20,13 +20,14 @@ class Booking extends StatelessWidget {
               child: Container(
                 height: 1000, // Adjusted height
                 decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(0),
-                      bottomRight: Radius.circular(0),
-                    ),
-                    color: Colors.white),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(0),
+                    bottomRight: Radius.circular(0),
+                  ),
+                  color: Colors.white,
+                ),
               ),
             ),
             Positioned(
@@ -57,8 +58,8 @@ class Booking extends StatelessWidget {
                       height: 10,
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 25, top: 30, bottom: 10),
+                      padding: const EdgeInsets.fromLTRB(
+                          25, 30, 25, 10), // Added padding
                       child: Text(
                         "Choose Location",
                         style: poppins_14(),
@@ -69,7 +70,8 @@ class Booking extends StatelessWidget {
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25, bottom: 10),
+                      padding: const EdgeInsets.fromLTRB(
+                          25, 0, 25, 10), // Added padding
                       child: Text(
                         "From",
                         style: poppins_14(),

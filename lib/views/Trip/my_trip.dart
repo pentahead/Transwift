@@ -47,7 +47,7 @@ class MyTrip extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                      padding: EdgeInsets.only(left: 20, top: 10, bottom: 0),
                       child: Text(
                         "Destination",
                         style: TextStyle(
@@ -80,6 +80,17 @@ class MyTrip extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(32.0)),
                           ),
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20, bottom: 10),
+                      child: Text(
+                        "Route Options :",
+                        style: TextStyle(
+                          fontFamily: "poppins",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
                         ),
                       ),
                     ),

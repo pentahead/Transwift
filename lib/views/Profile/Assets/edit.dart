@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Edit extends StatefulWidget {
-  final String label;
   final IconData icon;
+  final TextEditingController controller;
+  final bool enabled;
 
-  const Edit({super.key, required this.label, required this.icon});
+  const Edit({
+    super.key,
+    required this.icon,
+    required this.controller,
+    this.enabled = true,
+  });
 
   @override
   // ignore: library_private_types_in_public_api
@@ -12,7 +18,6 @@ class Edit extends StatefulWidget {
 }
 
 class _EditState extends State<Edit> {
-  final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -30,10 +35,10 @@ class _EditState extends State<Edit> {
                 child: SizedBox(
                   height: 50,
                   child: TextField(
-                    controller: _controller,
+                    controller: widget.controller,
                     focusNode: _focusNode,
+                    enabled: widget.enabled,
                     decoration: InputDecoration(
-                      labelText: widget.label,
                       prefixIcon: Icon(
                         widget.icon,
                         color: Colors.blue,
@@ -62,17 +67,19 @@ class _EditState extends State<Edit> {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              IconButton(
-                icon: const Icon(
-                  Icons.edit,
-                  color: Colors.blue,
-                  size: 30,
+              if (widget.enabled) ...[
+                const SizedBox(width: 10),
+                IconButton(
+                  icon: const Icon(
+                    Icons.edit,
+                    color: Colors.blue,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    FocusScope.of(context).requestFocus(_focusNode);
+                  },
                 ),
-                onPressed: () {
-                  FocusScope.of(context).requestFocus(_focusNode);
-                },
-              ),
+              ],
             ],
           ),
         ),

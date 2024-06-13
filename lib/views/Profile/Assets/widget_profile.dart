@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:transwift/views/Profile/Account_Edit.dart';
 import 'package:transwift/views/Profile/account.dart';
 import 'package:transwift/views/Profile/profile.dart';
-import 'package:transwift/views/Profile/account_edit.dart';
 
 class Saldo extends StatelessWidget {
   const Saldo({
@@ -119,17 +119,14 @@ class Backbutton extends StatelessWidget {
 }
 
 class Donebutton extends StatelessWidget {
-  const Donebutton({super.key});
+  final VoidCallback onPressed;
+
+  const Donebutton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          _createRoute(),
-        );
-      },
+      onTap: onPressed,
       child: Container(
         height: 50,
         width: 200,
@@ -156,25 +153,60 @@ class Donebutton extends StatelessWidget {
       ),
     );
   }
+}
 
-  Route _createRoute() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const Account(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, .0);
-        const end = Offset.zero;
-        const curve = Curves.easeInOut;
+@override
+Widget build(BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        _createRoute(),
+      );
+    },
+    child: Container(
+      height: 50,
+      width: 200,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30.0),
+        border: Border.all(
+          color: Colors.blue,
+          width: 2.0,
+        ),
+      ),
+      child: const Center(
+        child: Text(
+          'DONE',
+          style: TextStyle(
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            letterSpacing: 1,
+            color: Colors.blue,
+          ),
+        ),
+      ),
+    ),
+  );
+}
 
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Account(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, .0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
 
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
 
 class EditButton extends StatelessWidget {
@@ -187,7 +219,7 @@ class EditButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const accountEdit()),
+        MaterialPageRoute(builder: (context) => const AccountEdit()),
       ),
       child: Container(
         height: 50,

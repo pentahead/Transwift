@@ -7,7 +7,6 @@ import 'package:transwift/login_page.dart';
 import 'package:transwift/provider/auth_provider.dart';
 import 'package:transwift/provider/route_provider.dart';
 import 'package:transwift/provider/user_provider.dart';
-import 'package:transwift/views/Booking/booking.dart';
 // import 'login_page.dart';
 import 'signup_page.dart';
 import 'package:transwift/views/Profile/profile.dart';
