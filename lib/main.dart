@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transwift/homepage_body.dart';
 import 'package:transwift/lc.dart';
+import 'package:transwift/login_page.dart';
+// import 'package:transwift/login_page.dart';
 import 'package:transwift/provider/auth_provider.dart';
 import 'package:transwift/provider/route_provider.dart';
 import 'package:transwift/provider/user_provider.dart';
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const Booking(),
+        '/': (context) => const LoginPage(),
         '/signup': (context) => const SignUpPage(),
         '/home': (context) => const HomepageBody(),
         '/map': (context) => const MyTrip(),

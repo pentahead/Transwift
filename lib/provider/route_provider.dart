@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class RouteProvider with ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  List<String> _routes = [];
+  final List<String> _routes = [];
   List<String> get routes => _routes;
 
   List<String> _stops = [];
@@ -17,48 +17,63 @@ class RouteProvider with ChangeNotifier {
   String? get selectedStops => _selectedStops;
 
   RouteProvider() {
-    fetchStops(selectedStops!);
+    fetchInitialData();
   }
 
-  Future<void> fetchStops(String stopName) async {
-    final querySnapshot = await _firestore.collection('route').get();
-    _stops = querySnapshot.docs
-        .expand((doc) => doc.data().values)
-        .cast<String>()
-        .toList();
-    notifyListeners();
+  Future<void> fetchInitialData() async {
+    await fetchStops();
+    if (_stops.isNotEmpty) {
+      selectStops(
+          _stops.first); // Select the first stop by default if available
+    }
+  }
+
+  Future<void> fetchStops() async {
+    try {
+      final querySnapshot = await _firestore.collection('route').get();
+      _stops = querySnapshot.docs
+          .expand((doc) => doc.data().values)
+          .cast<String>()
+          .toList();
+      notifyListeners();
+    } catch (e) {
+      print('Error fetching stops: $e');
+    }
   }
 
   Future<void> fetchRoutes(String stopName) async {
     _routes.clear();
-    final routeDoc = await _firestore.collection('route').get();
+    try {
+      final routeDoc = await _firestore.collection('route').get();
 
-    if (routeDoc.docs.isNotEmpty) {
-      String routeDocId = routeDoc.docs.first.id;
+      if (routeDoc.docs.isNotEmpty) {
+        String routeDocId = routeDoc.docs.first.id;
 
-      final routeCollections = await _firestore
-          .collection('route')
-          .doc(routeDocId)
-          .collection(stopName)
-          .get();
+        final routeCollections = await _firestore
+            .collection('route')
+            .doc(routeDocId)
+            .collection(stopName)
+            .get();
 
-      for (var routeDoc in routeCollections.docs) {
-        _routes.addAll(routeDoc.data().values.cast<String>());
+        for (var routeDoc in routeCollections.docs) {
+          _routes.addAll(routeDoc.data().values.cast<String>());
+        }
+
+        notifyListeners();
       }
-
-      notifyListeners();
+    } catch (e) {
+      print('Error fetching routes: $e');
     }
   }
 
-  void selectRoute(String stop) {
-    _selectedRoute = stop;
-    fetchRoutes(stop);
+  void selectRoute(String route) {
+    _selectedRoute = route;
     notifyListeners();
   }
 
   void selectStops(String stop) {
     _selectedStops = stop;
-    fetchStops(stop);
+    fetchRoutes(stop);
     notifyListeners();
   }
 }

@@ -19,10 +19,12 @@ class DropdownStop extends StatelessWidget {
         ),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
-            value: provider.routes.isNotEmpty ? provider.routes.first : null,
+            value: provider.selectedRoute,
             hint: const Text('Select Route'),
             onChanged: (String? newValue) {
-              newValue;
+              if (newValue != null) {
+                provider.selectRoute(newValue);
+              }
             },
             items:
                 provider.routes.map<DropdownMenuItem<String>>((String value) {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:transwift/provider/user_provider.dart';
 import 'package:transwift/views/Profile/Assets/widget_profile.dart';
 import 'package:transwift/assets/NavBar.dart';
 
@@ -8,33 +10,33 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          color: Colors.blue,
-          child: Stack(children: [
-            Positioned(
-              top: 135,
-              right: 0,
-              left: 0,
-              child: Container(
-                height: 1000,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20), // No border on top right
-                      bottomLeft:
-                          Radius.circular(0), // No border on bottom left
-                      bottomRight: Radius.circular(0),
-                    ),
-                    color: Colors.white),
+      body: Container(
+        color: Colors.blue,
+        child: Stack(children: [
+          Positioned(
+            top: 135,
+            right: 0,
+            left: 0,
+            child: Container(
+              height: 1000,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                color: Colors.white,
               ),
             ),
-            Positioned(
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: SingleChildScrollView(
-                child: Column(
+          ),
+          Positioned(
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: SingleChildScrollView(
+              child: Consumer<UserProvider>(
+                builder: (context, userProvider, child) {
+                  return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -67,24 +69,19 @@ class Account extends StatelessWidget {
                           decoration: blue_border_white_bg(),
                           child: Row(
                             children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
+                              const SizedBox(width: 10),
                               const Icon(
                                 Icons.perm_identity_rounded,
                                 size: 20,
                                 color: Colors.blue,
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20),
                               Text(
-                                'Bashori',
+                                userProvider.name,
                                 style: poppins_12_w700_grey(),
                               ),
                             ],
-                          ), // Add your content inside the container
-                          // Add padding around the content
+                          ),
                         ),
                       ),
                       Padding(
@@ -103,24 +100,19 @@ class Account extends StatelessWidget {
                           decoration: blue_border_white_bg(),
                           child: Row(
                             children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
+                              const SizedBox(width: 10),
                               const Icon(
                                 Icons.email_rounded,
                                 size: 20,
                                 color: Colors.blue,
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20),
                               Text(
-                                '222410102036@gmail,com',
+                                userProvider.email,
                                 style: poppins_12_w700_grey(),
                               ),
                             ],
-                          ), // Add your content inside the container
-                          // Add padding around the content
+                          ),
                         ),
                       ),
                       Padding(
@@ -139,24 +131,19 @@ class Account extends StatelessWidget {
                           decoration: blue_border_white_bg(),
                           child: Row(
                             children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
+                              const SizedBox(width: 10),
                               const Icon(
                                 Icons.call,
                                 size: 20,
                                 color: Colors.blue,
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20),
                               Text(
-                                '081393418944',
+                                userProvider.phone,
                                 style: poppins_12_w700_grey(),
                               ),
                             ],
-                          ), // Add your content inside the container
-                          // Add padding around the content
+                          ),
                         ),
                       ),
                       Padding(
@@ -175,43 +162,34 @@ class Account extends StatelessWidget {
                           decoration: blue_border_white_bg(),
                           child: Row(
                             children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
+                              const SizedBox(width: 10),
                               const Icon(
                                 Icons.location_on_rounded,
                                 size: 20,
                                 color: Colors.blue,
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20),
                               Text(
                                 'Tanggul',
                                 style: poppins_12_w700_grey(),
                               ),
                             ],
-                          ), // Add your content inside the container
-                          // Add padding around the content
+                          ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Center(
-                        child: EditButton(),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 20),
+                      const Center(child: EditButton()),
+                      const SizedBox(height: 10),
                       const Center(child: Backbutton())
-                    ]),
+                    ],
+                  );
+                },
               ),
             ),
-          ]),
-        ),
-        bottomNavigationBar: const NavBar(
-          selectedIndex: 2,
-        ));
+          ),
+        ]),
+      ),
+      bottomNavigationBar: const NavBar(selectedIndex: 2),
+    );
   }
 }

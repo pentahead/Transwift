@@ -8,81 +8,86 @@ class MapList extends StatefulWidget {
 }
 
 class _MapList extends State<MapList> {
-  int _value = 0;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
         top: 40,
-        left: 40,
+        left: 20,
+        right: 20,
       ),
       child: Center(
         child: SingleChildScrollView(
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: _buildRadio(),
+            child: _buildTextOptions(),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildRadio() {
-    return Column(
+  Widget _buildTextOptions() {
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
+        SizedBox(
           height: 40,
         ),
-        _buildRadioOption(1, "Pergi ke jalan Ahmad Yani"),
-        const SizedBox(
+        TextOption("Pergi ke jalan Ahmad Yani"),
+        SizedBox(
           height: 20,
         ),
-        _buildRadioOption(2, "Naik Bis Sugeng Rahayu jurusan jember"),
-        const SizedBox(
+        TextOption("Naik Bis Sugeng Rahayu jurusan jember"),
+        SizedBox(
           height: 20,
         ),
-        _buildRadioOption(3, "Turun di terminal Tawang alun"),
-        const SizedBox(
+        TextOption("Turun di terminal Tawang alun"),
+        SizedBox(
           height: 20,
         ),
-        _buildRadioOption(4, "Pilih angkot jurusan Kampus"),
-        const SizedBox(
+        TextOption("Pilih angkot jurusan Kampus"),
+        SizedBox(
           height: 20,
         ),
-        _buildRadioOption(5, "Turun Di jalan Kalimantan"),
-        const SizedBox(
+        TextOption("Turun Di jalan Kalimantan"),
+        SizedBox(
           height: 20,
         ),
-        _buildRadioOption(6, "Anda sudah Di tujuan"),
-        const SizedBox(
+        TextOption("Anda sudah Di tujuan"),
+        SizedBox(
           height: 20,
         ),
       ],
     );
   }
+}
 
-  Widget _buildRadioOption(int value, String label) {
+class TextOption extends StatelessWidget {
+  final String label;
+
+  const TextOption(this.label, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Radio(
-          value: value,
-          groupValue: _value,
-          onChanged: (newValue) {
-            setState(() {
-              _value = newValue as int;
-            });
-          },
+        const Icon(
+          Icons.circle,
+          size: 8,
+          color: Colors.blueAccent,
         ),
         const SizedBox(width: 10),
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.black,
-            fontFamily: "poppins",
-            fontWeight: FontWeight.w500,
-            fontSize: 13,
+        Expanded(
+          child: Text(
+            label,
+            style: const TextStyle(
+              color: Colors.black87,
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.w500,
+              fontSize: 13,
+            ),
           ),
         ),
       ],
