@@ -58,8 +58,12 @@ class HomepageBody extends StatelessWidget {
                             ),
                             child: const CircleAvatar(
                               radius: 20,
-                              backgroundImage:
-                                  AssetImage('assets/images/profile.jpg'),
+                              backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                              child: Icon(
+                                Icons.person,
+                                size: 20,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],

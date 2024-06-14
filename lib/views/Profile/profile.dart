@@ -45,9 +45,16 @@ class Profile extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 70),
-                    const CircleAvatar(
-                      radius: 50,
-                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                    const Center(
+                      child: CircleAvatar(
+                        radius: 60,
+                        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                        child: Icon(
+                          Icons.person,
+                          size: 60,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                     Text(
                       userProvider.name,
@@ -122,7 +129,7 @@ class Profile extends StatelessWidget {
                     const Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: 0, left: 40, right: 40),
-                        child: Logout(),
+                        child: LogoutButton(), // Use the modified LogoutButton
                       ),
                     )
                   ],

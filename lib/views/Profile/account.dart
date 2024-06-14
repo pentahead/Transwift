@@ -50,8 +50,12 @@ class Account extends StatelessWidget {
                       const Center(
                         child: CircleAvatar(
                           radius: 60,
-                          backgroundImage:
-                              AssetImage('assets/images/profile.jpg'),
+                          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                          child: Icon(
+                            Icons.person,
+                            size: 60,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       Padding(
@@ -147,38 +151,7 @@ class Account extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 30, right: 30, top: 10, bottom: 10),
-                        child: Text(
-                          "Address",
-                          style: poppins_16_semi(),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 30, right: 30),
-                        child: Container(
-                          height: 50,
-                          width: 400,
-                          decoration: blue_border_white_bg(),
-                          child: Row(
-                            children: [
-                              const SizedBox(width: 10),
-                              const Icon(
-                                Icons.location_on_rounded,
-                                size: 20,
-                                color: Colors.blue,
-                              ),
-                              const SizedBox(width: 20),
-                              Text(
-                                'Tanggul',
-                                style: poppins_12_w700_grey(),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 190),
                       const Center(child: EditButton()),
                       const SizedBox(height: 10),
                       const Center(child: Backbutton())

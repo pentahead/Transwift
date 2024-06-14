@@ -66,8 +66,12 @@ class AccountEdit extends StatelessWidget {
                       const Center(
                         child: CircleAvatar(
                           radius: 60,
-                          backgroundImage:
-                              AssetImage('assets/images/profile.jpg'),
+                          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                          child: Icon(
+                            Icons.person,
+                            size: 60,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -89,17 +93,10 @@ class AccountEdit extends StatelessWidget {
                               icon: Icons.phone,
                               controller: phoneController,
                             ),
-                            const SizedBox(height: 20),
-                            Text("Address", style: poppins_16_semi()),
-                            const SizedBox(height: 10),
-                            Edit(
-                              icon: Icons.location_on,
-                              controller: addressController,
-                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 200),
+                      const SizedBox(height: 290),
                       Donebutton(
                         onPressed: () async {
                           final userId = FirebaseAuth.instance.currentUser?.uid;
@@ -133,6 +130,24 @@ class AccountEdit extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const NavBar(selectedIndex: 2),
+    );
+  }
+
+  TextStyle poppins_30_semi_white() {
+    return const TextStyle(
+      fontFamily: "poppins",
+      fontWeight: FontWeight.w600,
+      fontSize: 30,
+      color: Colors.white,
+    );
+  }
+
+  TextStyle poppins_16_semi() {
+    return const TextStyle(
+      fontFamily: "poppins",
+      fontWeight: FontWeight.w600,
+      fontSize: 16,
+      color: Colors.black,
     );
   }
 }
