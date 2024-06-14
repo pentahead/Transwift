@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:transwift/provider/route_provider.dart';
 
-class Dropdown extends StatefulWidget {
-  const Dropdown({super.key});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _DropdownState createState() => _DropdownState();
-}
-
-class _DropdownState extends State<Dropdown> {
-  String _selectedItem = 'Kereta Api'; // Default selected item
-
-  final List<String> _dropdownItems = [
-    'Kereta Api',
-    'Bis',
-    'Pesawat'
-  ]; // List of dropdown items
+class DropdownRoute extends StatelessWidget {
+  const DropdownRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<RouteProvider>(context);
+
     return Center(
       child: Container(
         width: 350,
@@ -29,16 +19,14 @@ class _DropdownState extends State<Dropdown> {
         ),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
-            value: _selectedItem,
+            value: provider.selectedStops,
+            hint: const Text('Select Stop'),
             onChanged: (String? newValue) {
-              setState(() {
-                _selectedItem = newValue!;
-              });
+              if (newValue != null) {
+                provider.selectStops(newValue);
+              }
             },
-            style: const TextStyle(
-              color: Colors.black,
-            ),
-            items: _dropdownItems.map<DropdownMenuItem<String>>((String value) {
+            items: provider.stops.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Padding(

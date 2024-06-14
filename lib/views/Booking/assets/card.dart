@@ -13,11 +13,9 @@ class CardList extends StatelessWidget {
         color: const Color.fromARGB(255, 255, 255, 255),
         surfaceTintColor: Colors.white, // Set background color to pure white
         elevation: 4.0,
-        shadowColor: const Color.fromARGB(255, 10, 10, 10)
-            .withOpacity(0.8),
+        shadowColor: const Color.fromARGB(255, 10, 10, 10).withOpacity(0.8),
         shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: InkWell(
           onTap: () => Navigator.push(
@@ -54,6 +52,20 @@ class CardList extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 30, bottom: 20),
                 child: Text(
                   "pulang",
+                  style: poppins14(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  "Rute Pemberhentian : ",
+                  style: poppins14(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, bottom: 20),
+                child: Text(
+                  "Tanggul - Bangsalsari",
                   style: poppins14(),
                 ),
               ),

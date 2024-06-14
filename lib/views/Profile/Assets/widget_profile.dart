@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:transwift/provider/auth_provider.dart';
+import 'package:transwift/views/Profile/Account_Edit.dart';
+import 'package:transwift/views/Profile/account.dart';
 import 'package:transwift/views/Profile/profile.dart';
-import 'package:transwift/views/Profile/account_edit.dart';
 
 class Saldo extends StatelessWidget {
   const Saldo({
@@ -118,17 +121,14 @@ class Backbutton extends StatelessWidget {
 }
 
 class Donebutton extends StatelessWidget {
-  const Donebutton({super.key});
+  final VoidCallback onPressed;
+
+  const Donebutton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          _createRoute(),
-        );
-      },
+      onTap: onPressed,
       child: Container(
         height: 50,
         width: 200,
@@ -155,25 +155,60 @@ class Donebutton extends StatelessWidget {
       ),
     );
   }
+}
 
-  Route _createRoute() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => const Profile(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, .0);
-        const end = Offset.zero;
-        const curve = Curves.easeInOut;
+@override
+Widget build(BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        _createRoute(),
+      );
+    },
+    child: Container(
+      height: 50,
+      width: 200,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30.0),
+        border: Border.all(
+          color: Colors.blue,
+          width: 2.0,
+        ),
+      ),
+      child: const Center(
+        child: Text(
+          'DONE',
+          style: TextStyle(
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            letterSpacing: 1,
+            color: Colors.blue,
+          ),
+        ),
+      ),
+    ),
+  );
+}
 
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const Account(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, .0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
 
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
 
 class EditButton extends StatelessWidget {
@@ -186,7 +221,7 @@ class EditButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const accountEdit()),
+        MaterialPageRoute(builder: (context) => const AccountEdit()),
       ),
       child: Container(
         height: 50,
@@ -250,41 +285,30 @@ class EditIcon extends StatelessWidget {
   }
 }
 
-class Logout extends StatelessWidget {
-  const Logout({
-    super.key,
-  });
+class LogoutButton extends StatelessWidget {
+  const LogoutButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Profile()),
+    return ElevatedButton(
+      onPressed: () {
+        // Sign out the user using the AuthProvider
+        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+        authProvider.signOut();
+        // Optionally, navigate to the login screen after sign-out
+        Navigator.of(context).pushReplacementNamed('/');
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue, // Background color
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       ),
-      child: Container(
-        height: 50,
-        width: 200,
-        decoration: BoxDecoration(
-          color: Colors.white, // Set background color to white
-          borderRadius: BorderRadius.circular(30.0), // Set rounded corners
-          border: Border.all(
-            color: Colors.blue, // Set border color to blue
-            width: 2.0, // Set border width
-          ),
-        ),
-        child: const Center(
-          child: Text(
-            'Logout',
-            style: TextStyle(
-                fontFamily: "Poppins",
-                fontWeight: FontWeight.w700,
-                fontSize: 20,
-                letterSpacing: 1,
-                color: Colors.blue),
-          ),
-        ), // Add your content inside the container
-        // Add padding around the content
+      child: const Text(
+        'Logout',
+        style: TextStyle(
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            color: Colors.white),
       ),
     );
   }

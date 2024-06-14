@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:transwift/views/Booking/assets/Button.dart';
-
-import 'package:transwift/views/Booking/assets/date_pick.dart';
-import 'package:transwift/views/Booking/assets/dropdown.dart';
-import 'package:transwift/views/Booking/assets/input.dart';
+import 'package:transwift/views/Booking/assets/button.dart';
+import 'package:transwift/views/Booking/assets/dropdown_route.dart'; // Import DropdownRoute
+import 'package:transwift/views/Booking/assets/dropdown_stop.dart'; // Import DropdownStop
 
 class Booking extends StatelessWidget {
   const Booking({super.key});
@@ -22,14 +20,14 @@ class Booking extends StatelessWidget {
               child: Container(
                 height: 1000, // Adjusted height
                 decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20), // No border on top right
-                      bottomLeft:
-                          Radius.circular(0), // No border on bottom left
-                      bottomRight: Radius.circular(0),
-                    ),
-                    color: Colors.white),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(0),
+                    bottomRight: Radius.circular(0),
+                  ),
+                  color: Colors.white,
+                ),
               ),
             ),
             Positioned(
@@ -60,51 +58,26 @@ class Booking extends StatelessWidget {
                       height: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.fromLTRB(
+                          25, 30, 25, 10), // Added padding
                       child: Text(
-                        "Pilih kendaraan",
-                        style: poppins16bold(),
+                        "Choose Location",
+                        style: poppins_14(),
                       ),
                     ),
-                    const Dropdown(),
+                    const DropdownRoute(), // Use DropdownRoute
                     const SizedBox(
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25),
+                      padding: const EdgeInsets.fromLTRB(
+                          25, 0, 25, 10), // Added padding
                       child: Text(
-                        "Dari",
+                        "From",
                         style: poppins_14(),
                       ),
                     ),
-                    const Input(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Text(
-                        "Tujuan",
-                        style: poppins_14(),
-                      ),
-                    ),
-                    const Input(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25, bottom: 10),
-                      child: Text(
-                        "Tanggal",
-                        style: poppins_16_semi(),
-                      ),
-                    ),
-                    const DatePicker(),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Text(
-                        "Jumlah Penumpang",
-                        style: poppins_14(),
-                      ),
-                    ),
-                    const Input(),
+                    const DropdownStop(), // Use DropdownStop
                     const SizedBox(
                       height: 20,
                     ),
@@ -119,7 +92,6 @@ class Booking extends StatelessWidget {
     );
   }
 
-  // ignore: non_constant_identifier_names
   TextStyle poppins_16_semi() {
     return const TextStyle(
       fontFamily: "poppins",

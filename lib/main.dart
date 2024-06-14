@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transwift/homepage_body.dart';
 import 'package:transwift/lc.dart';
+import 'package:transwift/login_page.dart';
+// import 'package:transwift/login_page.dart';
 import 'package:transwift/provider/auth_provider.dart';
+import 'package:transwift/provider/route_provider.dart';
 import 'package:transwift/provider/user_provider.dart';
-import 'login_page.dart';
+// import 'login_page.dart';
 import 'signup_page.dart';
 import 'package:transwift/views/Profile/profile.dart';
 import 'package:transwift/views/Trip/my_trip.dart';
@@ -26,6 +29,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => RouteProvider()),
       ],
       child: const MyApp(),
     ),

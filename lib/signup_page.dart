@@ -143,7 +143,7 @@ class SignUpPage extends StatelessWidget {
                   );
 
                   if (success) {
-                    Navigator.pushReplacementNamed(context, '/home');
+                    Navigator.pushReplacementNamed(context, '/');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

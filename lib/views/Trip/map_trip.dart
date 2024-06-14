@@ -2,46 +2,150 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:location/location.dart' as loc;
+import 'package:permission_handler/permission_handler.dart' as perm;
 import 'package:transwift/homepage_body.dart';
-import 'package:transwift/views/trip/assets/Map_List.dart';
+import 'package:transwift/views/Trip/assets/map_List.dart';
 
 class RouteMap extends StatefulWidget {
-  const RouteMap({super.key});
+  final String destination; // Add destination parameter
+  final String routeOption; // Add route option parameter
+
+  const RouteMap(
+      {super.key, required this.destination, required this.routeOption});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RouteMapState createState() => _RouteMapState();
 }
 
 class _RouteMapState extends State<RouteMap> {
   late GoogleMapController mapController;
-  final LatLng _jember = const LatLng(-8.184485, 113.668076);
-  final LatLng _papuma = const LatLng(-8.444506, 113.570511);
+  LatLng? _jember;
+  LatLng? _destination; // Change to nullable
   final Set<Polyline> _polylines = {};
+  bool _isLoading = true;
+  String _errorMessage = '';
 
   @override
   void initState() {
     super.initState();
-    _getRoute();
+    _requestLocationPermission();
+    _searchDestination(
+        widget.destination); // Search for destination coordinates
+  }
+
+  Future<void> _searchDestination(String destination) async {
+    final String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
+    final String url =
+        'https://maps.googleapis.com/maps/api/geocode/json?address=$destination&key=$apiKey';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        if (data['results'].isNotEmpty) {
+          final location = data['results'][0]['geometry']['location'];
+          setState(() {
+            _destination = LatLng(location['lat'], location['lng']);
+          });
+          _getRoute();
+        } else {
+          throw Exception('No results found for the given destination');
+        }
+      } else {
+        throw Exception('Failed to load destination');
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _requestLocationPermission() async {
+    var status = await perm.Permission.location.request();
+
+    if (status.isGranted) {
+      _getCurrentLocation();
+    } else {
+      setState(() {
+        _isLoading = false;
+        _errorMessage = 'Location permission denied';
+      });
+    }
+  }
+
+  Future<void> _getCurrentLocation() async {
+    loc.Location location = loc.Location();
+
+    bool serviceEnabled;
+    loc.PermissionStatus permissionGranted;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == loc.PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != loc.PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    final loc.LocationData locationData = await location.getLocation();
+
+    setState(() {
+      _jember = LatLng(locationData.latitude!, locationData.longitude!);
+      _getRoute();
+    });
   }
 
   Future<void> _getRoute() async {
-    final String baseUrl =
+    if (_jember == null || _destination == null) return;
+
+    const String baseUrl =
         'https://maps.googleapis.com/maps/api/directions/json';
-    final String origin = '${_jember.latitude},${_jember.longitude}';
-    final String destination = '${_papuma.latitude},${_papuma.longitude}';
-    final String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
+    final String origin = '${_jember!.latitude},${_jember!.longitude}';
+    final String destination =
+        '${_destination!.latitude},${_destination!.longitude}';
+    const String apiKey = 'AIzaSyAn-Dx8xBKOEodyVemjCPrkNQRyt0CAgvE';
+
+    final Map<String, String> modeMap = {
+      'Best Route': 'driving',
+      'Fewer Transfer': 'transit',
+      'Less Walking': 'walking',
+      'Wheelchair Accessible': 'wheelchair',
+    };
+
+    final String mode = modeMap[widget.routeOption] ?? 'driving';
 
     final String url =
-        '$baseUrl?origin=$origin&destination=$destination&key=$apiKey';
+        '$baseUrl?origin=$origin&destination=$destination&mode=$mode&key=$apiKey';
 
-    final response = await http.get(Uri.parse(url));
+    try {
+      final response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      final String polyline = data['routes'][0]['overview_polyline']['points'];
-      _addPolyline(polyline);
-    } else {
-      throw Exception('Failed to load directions');
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        final String polyline =
+            data['routes'][0]['overview_polyline']['points'];
+        _addPolyline(polyline);
+      } else {
+        throw Exception('Failed to load directions');
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
     }
   }
 
@@ -53,12 +157,13 @@ class _RouteMapState extends State<RouteMap> {
     setState(() {
       _polylines.add(
         Polyline(
-          polylineId: PolylineId('route'),
+          polylineId: const PolylineId('route'),
           points: polylineCoordinates,
           color: Colors.blue,
           width: 5,
         ),
       );
+      _isLoading = false;
     });
   }
 
@@ -101,31 +206,39 @@ class _RouteMapState extends State<RouteMap> {
             top: 40,
             right: 0,
             left: 0,
-            child: Container(
+            child: SizedBox(
               width: 430,
-              height: 350,
-              child: GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: _jember,
-                  zoom: 10.0,
-                ),
-                onMapCreated: (GoogleMapController controller) {
-                  mapController = controller;
-                },
-                polylines: _polylines,
-                markers: {
-                  Marker(
-                    markerId: MarkerId('jember'),
-                    position: _jember,
-                    infoWindow: InfoWindow(title: 'Jember'),
-                  ),
-                  Marker(
-                    markerId: MarkerId('papuma'),
-                    position: _papuma,
-                    infoWindow: InfoWindow(title: 'Papuma'),
-                  ),
-                },
-              ),
+              height: 500,
+              child: _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : _errorMessage.isNotEmpty
+                      ? Center(
+                          child: Text(_errorMessage)) // Display error message
+                      : _jember != null && _destination != null
+                          ? GoogleMap(
+                              initialCameraPosition: CameraPosition(
+                                target: _jember!,
+                                zoom: 12.0,
+                              ),
+                              onMapCreated: (GoogleMapController controller) {
+                                mapController = controller;
+                              },
+                              polylines: _polylines,
+                              markers: {
+                                Marker(
+                                  markerId: const MarkerId('jember'),
+                                  position: _jember!,
+                                  infoWindow: const InfoWindow(title: 'Jember'),
+                                ),
+                                Marker(
+                                  markerId: const MarkerId('destination'),
+                                  position: _destination!,
+                                  infoWindow:
+                                      InfoWindow(title: widget.destination),
+                                ),
+                              },
+                            )
+                          : Container(), // Empty container when location is null
             ),
           ),
           Positioned(
@@ -135,38 +248,35 @@ class _RouteMapState extends State<RouteMap> {
             child: Container(
               width: 200,
               height: 80,
+              padding: const EdgeInsets.only(bottom: 8),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(0),
-                  topRight: Radius.circular(0),
                   bottomLeft: Radius.circular(50),
                   bottomRight: Radius.circular(50),
                 ),
                 color: Colors.blue,
               ),
-              child: const Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.search, size: 40, color: Colors.white),
-                    SizedBox(width: 5),
-                    Text(
-                      " Nama Kota",
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Icon(Icons.search, size: 40, color: Colors.white),
+                  const SizedBox(width: 5),
+                  Text(
+                    widget.destination, // Display dynamic destination
+                    style: const TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
           Positioned(
-            top: 350,
+            top: 500,
             right: 0,
             left: 0,
             child: Container(
@@ -182,10 +292,15 @@ class _RouteMapState extends State<RouteMap> {
               ),
               child: Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: 430,
                     height: 300,
-                    child: MapList(), // Replace with your List widget
+                    child: _jember != null && _destination != null
+                        ? MapList(
+                            origin: _jember!,
+                            destination: _destination!,
+                          )
+                        : Container(), // Replace with your List widget
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
@@ -210,9 +325,9 @@ class _RouteMapState extends State<RouteMap> {
                         side: const BorderSide(color: Colors.blue, width: 2.0),
                       ),
                     ),
-                    child: const Text(
-                      'Done',
-                      style: TextStyle(
+                    child: Text(
+                      _jember != null ? _jember.toString() : 'Loading...',
+                      style: const TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
